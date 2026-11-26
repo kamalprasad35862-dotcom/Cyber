@@ -429,7 +429,7 @@ main{position:relative;overflow:hidden;background:#fff}
 /* calmer surfaces */
 .sheet{box-shadow:none;border-color:#ECECE9;border-radius:18px}
 .work{gap:16px;background:#F7F7F5;padding:20px 28px 28px}
-.story{border:0;background:transparent;padding:0;grid-template-columns:200px 1fr;gap:24px}
+.story{border:0;background:transparent;padding:0;grid-template-columns:170px 1fr;gap:22px}
 .story-k{color:var(--muted);font-size:14px}
 .story-t{font-size:18px;font-weight:600}
 .ask{background:none;padding:0;margin-top:10px;color:var(--ink);font-size:16px;gap:10px}
@@ -453,7 +453,7 @@ main{position:relative;overflow:hidden;background:#fff}
 .split{grid-template-columns:1.25fr 1fr}
 body.narrow .split{grid-template-columns:1fr}
 .scene{max-height:300px}
-.story-art svg{max-height:124px}
+.story-art svg{max-height:100px}
 .msgrow.flagged{background:#FFF8E8}
 .tag-ext{font-size:13px}
 .inbox-row .who{width:auto;margin-right:6px}
@@ -651,6 +651,31 @@ body.narrow .hero-kicker{margin-top:22px}
 .thanks-fallback{font-size:72px;font-weight:750;letter-spacing:-.04em}
 .thanks-sub{font-size:22px;font-weight:650;color:var(--ink);margin-top:8px}
 .thanks-q{font-size:17px;color:var(--muted);margin-top:8px}
+
+/* spear phishing: email left, clues + choice right, one screen */
+.sp-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+.sp-side{display:flex;flex-direction:column;gap:12px}
+.sp-grid .mail-body{padding:14px 20px;font-size:15px}
+.sp-grid .mail-body p{margin-bottom:10px}
+.sp-grid .mail-head{padding:14px 20px 10px}
+.sp-grid .mail-subj{font-size:18px}
+.sp-left{display:flex;flex-direction:column;gap:12px}
+.sp-src{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.sp-src .src{border:1px solid var(--line);border-radius:9px;padding:6px 8px;font-size:13px;line-height:1.25;animation:none;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
+.sp-src .src div{display:flex;flex-direction:column;min-width:0}
+.sp-src .src div>b:first-child{display:block;font-size:13.5px}
+.sp-src .src span{color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.sp-grid .mail-body{font-size:14.5px;line-height:1.5}
+.sp-grid .mail-meta{font-size:13.5px;line-height:1.6}
+.sp-choice .choice{gap:6px}
+.sp-choice .choice-btn{padding:8px 12px;font-size:14.5px;gap:10px}
+.sp-choice .choice-btn .k{width:24px;height:24px;font-size:12px}
+.sp-side{gap:10px}
+.sp-side .pad{padding:14px 16px}
+.sp-src .src:first-of-type{border-top:1px solid var(--line)}
+.sp-src .src .k{width:22px;height:22px;font-size:11.5px;line-height:22px}
+.sp-src .src b{font-size:14px}
+body.narrow .sp-grid{grid-template-columns:1fr}
 
 /* one column when the zoomed page is narrow */
 body.narrow .lesson-wrap,body.narrow .overview,body.narrow .phone-wrap{grid-template-columns:1fr}
@@ -1418,58 +1443,56 @@ SIMS[2] = (el, a) => {
 /* ---- 3. Spear phishing ---- */
 SIMS[3] = (el, a) => {
   const src = [
-    { k:'1', t:'LinkedIn profile', d:'Shows <b>Riya Sharma, M.Tech DSAI, IIIT Naya Raipur</b>.' },
-    { k:'2', t:'Riya\'s Instagram post', d:'"So happy to be selected for the <b>CMIT Fellowship</b>!"' },
-    { k:'3', t:'College website', d:'Faculty page shows <b>Dr. A. Verma</b> as fellowship coordinator.' },
-    { k:'4', t:'Public notice PDF', d:'Says the <b>first stipend of ₹50,000</b> comes this month.' },
-    { k:'5', t:'Fake website name', d:'<span class="mono">iiitnr-edu.in</span> (with a dash) looks like the real <span class="mono">iiitnr.edu.in</span>. It was bought 3 days ago.' },
-    { k:'6', t:'Rushing', d:'"Before 5 PM today", so Riya has no time to check.' },
+    { k:'1', t:'LinkedIn', d:'name, course' },
+    { k:'2', t:'Instagram', d:'fellowship post' },
+    { k:'3', t:'College site', d:'coordinator name' },
+    { k:'4', t:'Notice PDF', d:'₹50,000 stipend' },
+    { k:'5', t:'Fake site', d:'<span class="mono">iiitnr-edu.in</span>' },
+    { k:'6', t:'Rushing', d:'"before 5 PM"' },
   ];
   const T = (k, txt) => `<span class="tok" data-k="${k}">${txt}<sup>${k}</sup></span>`;
   el.innerHTML = `${toolbar('target', 'Riya\'s college inbox', 'High-risk email')}
-    <div class="sheet mail" data-mail>
-      <div class="mail-bar"><i></i><i></i><i></i>&nbsp; riya.sharma@iiitnr.edu.in</div>
-      <div class="inbox" data-inbox>
-        <button class="inbox-row" data-open><span class="unread"></span><span class="who">Dr. A. Verma</span><span class="sub"><b>CMIT Fellowship: stipend of ₹50,000 ready</b> · Dear Riya, congratulations on your selection…</span><span class="hint">10:42</span></button>
-      </div>
-    </div>
-    <p class="hint" data-hintopen>Open the new email Riya just got.</p>
-    <div data-rest></div>`;
+    <div class="sp-grid">
+      <div class="sp-left"><div class="sheet mail" data-mail>
+        <div class="mail-bar"><i></i><i></i><i></i>&nbsp; riya.sharma@iiitnr.edu.in</div>
+        <div class="inbox" data-inbox>
+          <button class="inbox-row" data-open><span class="unread"></span><span class="who">Dr. A. Verma</span><span class="sub"><b>CMIT Fellowship: stipend of ₹50,000 ready</b> · Dear Riya, congratulations…</span><span class="hint">10:42</span></button>
+        </div>
+      </div></div>
+      <div class="sp-side" data-rest><div class="sheet pad"><div class="prompt">A new email for Riya</div><p class="hint" style="margin-top:4px">Click the email on the left to open it.</p></div></div>
+    </div>`;
   $('[data-open]', el).onclick = () => {
-    $('[data-hintopen]', el).remove();
     $('[data-inbox]', el).outerHTML = `
       <div class="mail-head fade-in">
         <div class="mail-subj">CMIT Fellowship: stipend of ₹50,000 ready</div>
         <div class="mail-meta"><b>Dr. A. Verma, ${T('3','Fellowship Coordinator')}</b> &lt;a.verma@${T('5','iiitnr-edu.in')}&gt;<br>to ${T('1','Riya Sharma, M.Tech DSAI')} · 10:42 AM</div>
       </div>
       <div class="mail-body fade-in">
-        <p>Dear Riya,</p>
-        <p>Congratulations on your selection for the ${T('2','CMIT Fellowship')}. Your ${T('4','first stipend of ₹50,000')} is ready to be credited.</p>
-        <p>Please fill your SBI account number, IFSC and debit card details in the attached form and pay the <b>₹500 processing fee</b> ${T('6','before 5 PM today')}, or the stipend will go to the next student on the list.</p>
-        <p>Regards,<br>Dr. A. Verma</p>
+        <p>Dear Riya, congrats on the ${T('2','CMIT Fellowship')}! Your ${T('4','first stipend of ₹50,000')} is ready.</p>
+        <p>Send your SBI card details and pay a <b>₹500 processing fee</b> ${T('6','before 5 PM today')}, or the stipend goes to the next student.</p>
+        <p>Dr. A. Verma</p>
       </div>`;
     a.tick(0);
-    $('[data-rest]', el).innerHTML = `<div class="actions"><button class="btn btn-dark" data-osint>${ic('search')}Show where the hacker found these details</button></div>`;
+    $('[data-rest]', el).innerHTML = `<div class="sheet pad fade-in"><div class="prompt">It knows so much about Riya.</div><p class="hint" style="margin:4px 0 14px">How did the hacker get all this?</p><button class="btn btn-dark btn-sm" data-osint>${ic('search')}Show where the hacker found these details</button></div>`;
     $('[data-osint]', el).onclick = revealOsint;
   };
   function revealOsint(){
     $('[data-mail]', el).classList.add('osint');
     const o = $('[data-rest]', el);
-    o.innerHTML = `<div class="split">
-      <div class="sheet"><div class="pad" style="padding-bottom:6px"><div class="label" style="margin:0">All of this was already public · keep the mouse on a card to see it</div></div>${src.map((s, i) => `<div class="src" data-k="${s.k}" style="animation-delay:${i * 80}ms"><span class="k">${s.k}</span><div><b>${s.t}</b>${s.d}</div></div>`).join('')}</div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="sheet"><table class="cmp"><tr><th></th><th>Normal phishing</th><th>Spear phishing</th></tr>
-          <tr><td>Sent to</td><td>Thousands of people</td><td>Only Riya</td></tr><tr><td>Message</td><td>"Dear Customer"</td><td>Her name, course, fellowship</td></tr>
-          <tr><td>Hacker's effort</td><td>Very little</td><td>Checked her profiles online</td></tr><tr><td>Danger</td><td>Medium</td><td style="color:var(--red)">High</td></tr></table></div>
-        <div class="sheet pad"><div class="prompt" style="margin-bottom:14px">What should Riya do?</div>${choiceBtns([{ c:'breach', t:'Send SBI card details and pay ₹500 before 5 PM' }, { c:'defend', t:'First go to the fellowship office and confirm' }])}</div>
-      </div></div>`;
+    o.innerHTML = `
+      <div class="sheet pad fade-in">
+        <div class="label" style="margin-bottom:8px">All of this was already public</div>
+        <div class="sp-src">${src.map(s => `<div class="src" data-k="${s.k}"><span class="k">${s.k}</span><div><b>${s.t}</b><span>${s.d}</span></div></div>`).join('')}</div>
+      </div>`;
+    o.insertAdjacentHTML('beforeend', `<div class="sheet pad fade-in sp-choice" data-choice><div class="prompt" style="margin-bottom:10px">What should Riya do?</div>${choiceBtns([{ c:'breach', t:'Send card details and pay ₹500 before 5 PM' }, { c:'defend', t:'First go to the fellowship office and confirm' }])}</div>`);
+    const ch = $('[data-choice]', o);
     $$('.src', o).forEach(s => {
       s.onmouseenter = () => $$(`.tok[data-k="${s.dataset.k}"]`, el).forEach(t => t.classList.add('hl'));
       s.onmouseleave = () => $$('.tok.hl', el).forEach(t => t.classList.remove('hl'));
     });
     a.tick(1);
-    $$('[data-c]', o).forEach(b => b.onclick = () => {
-      const c = b.dataset.c; markChoice(o, b);
+    $$('[data-c]', ch).forEach(b => b.onclick = () => {
+      const c = b.dataset.c; markChoice(ch, b);
       if (c === 'breach') { setStatus(el, 'danger', 'Money lost');
         a.fb('danger', 'Riya lost ₹500 and her SBI card details.', 'There is no stipend. Using her card details, the hacker also shops online from her account. Every detail looked real because it was real. It was all public.');
       } else { setStatus(el, 'safe', 'Confirmed fake');
