@@ -574,28 +574,61 @@ body.narrow .th-types,body.narrow .th-ws{grid-template-columns:1fr}
 .emboss{filter:grayscale(1) contrast(1.1) brightness(1.12) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 rgba(0,0,0,.22));opacity:.5;mix-blend-mode:multiply}
 .seal-mini{width:30px;height:30px;flex:none;margin:0 14px 0 4px}
 .bottom.bare{border-top-color:transparent;background:#F7F7F5}
+body.at-intro .app{grid-template-rows:60px 1fr 0}
+body.at-intro .bottom{display:none}
 
 /* minimal intro */
-.hero{min-height:100%;display:grid;place-items:center;text-align:center;padding:40px;background:#F7F7F5}
-.hero-in{max-width:780px;display:flex;flex-direction:column;align-items:center}
-.hero-seal{width:92px;height:92px;margin-bottom:20px}
-.hero-art{width:min(540px,92%);margin-top:30px}
+.hero{min-height:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:56px;padding:40px max(56px,6vw);background:#F7F7F5;text-align:left}
+.hero-in{max-width:600px;display:flex;flex-direction:column;align-items:flex-start}
+.hero .eyebrow{font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.01em}
+.hero h1{font-size:56px;line-height:1.02;letter-spacing:-.045em;font-weight:750;margin:14px 0 20px;white-space:nowrap}
+.hero .lead{font-size:19px;line-height:1.5;color:var(--muted);max-width:470px;margin-bottom:32px}
+.hero-act{display:flex;gap:24px;align-items:center}
+.hero-meta{display:flex;align-items:center;gap:10px;margin-top:44px;padding-top:20px;border-top:1px solid #E4E4E0;font-size:13.5px;font-weight:600;color:var(--muted);width:100%;max-width:470px}
+.seal-meta{width:26px;height:26px;flex:none}
+.hero-visual{position:relative;display:grid;place-items:center;min-height:380px}
+.hero-seal{position:absolute;inset:0;margin:auto;width:min(320px,82%);aspect-ratio:1;height:auto;opacity:.11}
+.hero-art{position:relative;z-index:1;width:100%;max-width:560px;align-self:end}
 .hero-art svg{width:100%;height:auto;display:block}
-.hero .eyebrow{font-size:14px;color:var(--muted)}
-.hero h1{font-size:64px;line-height:1.02;letter-spacing:-.045em;font-weight:750;margin:12px 0 18px}
-.hero .hand-intro{max-width:340px;width:100%;margin:6px auto 18px}
-.hero .lead{font-size:19px;color:var(--muted);margin-bottom:30px}
-.hero-act{display:flex;gap:22px;align-items:center}
 .link-btn{font-size:15px;font-weight:600;color:var(--muted);text-decoration:underline;text-underline-offset:4px}
 .link-btn:hover{color:var(--ink)}
-body.narrow .hero h1{font-size:44px}
+body.narrow .hero{grid-template-columns:1fr;gap:28px;padding:32px 28px;text-align:center}
+body.narrow .hero-in{align-items:center;margin:0 auto}
+body.narrow .hero h1{font-size:42px;white-space:normal}
+body.narrow .hero-meta{justify-content:center;margin-top:28px}
+body.narrow .hero-visual{min-height:240px}
 
 /* faint security-icon pattern on the home screen, fading out behind the text */
 .hero{position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%20fill%3D%22none%22%20stroke%3D%22%2316171A%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2814%2018%29%20rotate%28-12%2012%2012%29%22%3E%3Cpath%20d%3D%22M12%2022s8-4%208-10V5l-8-3-8%203v7c0%206%208%2010%208%2010z%22%2F%3E%3Cpath%20d%3D%22m9%2012%202%202%204-4%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2896%208%29%20rotate%288%2012%2012%29%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22m22%207-10%206L2%207%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28176%2030%29%20rotate%28-6%2012%2012%29%22%3E%3Crect%20x%3D%223%22%20y%3D%2211%22%20width%3D%2218%22%20height%3D%2211%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M7%2011V7a5%205%200%200%201%2010%200v4%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2846%2096%29%20rotate%2814%2012%2012%29%22%3E%3Ccircle%20cx%3D%227.5%22%20cy%3D%2215.5%22%20r%3D%225.5%22%2F%3E%3Cpath%20d%3D%22m21%202-9.6%209.6M15.5%207.5l3%203L22%207l-3-3%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28130%2086%29%20rotate%28-8%2012%2012%29%22%3E%3Cpath%20d%3D%22M2%2012s3.5-7%2010-7%2010%207%2010%207-3.5%207-10%207S2%2012%202%2012z%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28206%20112%29%20rotate%2810%2012%2012%29%22%3E%3Crect%20x%3D%226%22%20y%3D%222%22%20width%3D%2212%22%20height%3D%2220%22%20rx%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M11%2018h2%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2810%20176%29%20rotate%286%2012%2012%29%22%3E%3Cpath%20d%3D%22M10%2013a5%205%200%200%200%207.5.5l3-3a5%205%200%200%200-7-7l-1.7%201.7%22%2F%3E%3Cpath%20d%3D%22M14%2011a5%205%200%200%200-7.5-.5l-3%203a5%205%200%200%200%207%207l1.7-1.7%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2892%20168%29%20rotate%28-10%2012%2012%29%22%3E%3Cpath%20d%3D%22M10.3%203.9%201.8%2018a2%202%200%200%200%201.7%203h17a2%202%200%200%200%201.7-3L13.7%203.9a2%202%200%200%200-3.4%200z%22%2F%3E%3Cpath%20d%3D%22M12%209v4M12%2017h.01%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28168%20190%29%20rotate%2812%2012%2012%29%22%3E%3Cpath%20d%3D%22M21%2015a2%202%200%200%201-2%202H7l-4%204V5a2%202%200%200%201%202-2h14a2%202%200%200%201%202%202z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28136%20140%29%20rotate%280%2012%2012%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%224%22%2F%3E%3Cpath%20d%3D%22M4%2021v-1a6%206%200%200%201%206-6h4a6%206%200%200%201%206%206v1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");background-size:240px 240px;opacity:.09;
-  -webkit-mask-image:radial-gradient(ellipse 50% 56% at 50% 48%,transparent 0,transparent 68%,#000 100%);
-          mask-image:radial-gradient(ellipse 50% 56% at 50% 48%,transparent 0,transparent 68%,#000 100%);pointer-events:none}
-.hero-in{position:relative;z-index:1}
+  -webkit-mask-image:radial-gradient(ellipse 42% 60% at 28% 50%,transparent 0,transparent 62%,#000 100%);
+          mask-image:radial-gradient(ellipse 42% 60% at 28% 50%,transparent 0,transparent 62%,#000 100%);pointer-events:none}
+.hero-in,.hero-visual{position:relative;z-index:1}
+
+
+/* premium pass: soft light, product-card visual, no clip-art pattern */
+.hero{background:
+  radial-gradient(900px 520px at 78% 38%,rgba(120,150,255,.16),transparent 62%),
+  radial-gradient(760px 460px at 8% 100%,rgba(255,120,170,.10),transparent 60%),
+  #FAFAF8;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:56px}
+.hero::before{display:none}
+.hero-chip{display:inline-flex;align-items:center;gap:10px;height:38px;padding:0 16px 0 8px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(22,23,26,.08);box-shadow:0 1px 2px rgba(0,0,0,.04);font-size:13.5px;font-weight:600;color:var(--ink-2);backdrop-filter:blur(6px)}
+.hero-chip .dot{width:3px;height:3px;border-radius:50%;background:var(--faint)}
+.hero-chip .seal-meta{width:26px;height:26px}
+.hero-kicker{margin-top:30px;font-size:15px;font-weight:650;letter-spacing:.01em;color:#C9356B}
+.hero h1{font-size:62px;line-height:1.02;letter-spacing:-.05em;margin:10px 0 22px;color:#111214}
+.hero .lead{font-size:19px;color:#5B5F67;max-width:440px;margin-bottom:34px}
+.hero .btn-dark{min-height:50px;padding:0 26px;font-size:16px;box-shadow:0 10px 24px -10px rgba(17,18,20,.55),0 2px 0 #000}
+.hero-visual{min-height:0;display:flex;flex-direction:column;justify-content:flex-end;padding:40px 22px 20px;border-radius:32px;
+  background:linear-gradient(180deg,#FFFFFF 0%,#F3F5FA 100%);border:1px solid rgba(22,23,26,.06);
+  box-shadow:0 40px 80px -40px rgba(30,40,80,.35),0 2px 6px rgba(0,0,0,.04)}
+.hero-seal{inset:auto;top:20px;left:20px;margin:0;width:54px;opacity:.55}
+.hero-art{max-width:none;align-self:stretch}
+.hero-cap{display:flex;justify-content:space-between;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(22,23,26,.07);font-size:13.5px;font-weight:600;color:var(--muted)}
+.hero-cap span:first-child{color:var(--ink-2)}
+body.narrow .hero{gap:26px}
+body.narrow .hero-visual{padding:44px 22px 18px}
+body.narrow .hero-kicker{margin-top:22px}
 
 /* one column when the zoomed page is narrow */
 body.narrow .lesson-wrap,body.narrow .overview,body.narrow .phone-wrap{grid-template-columns:1fr}
@@ -800,12 +833,16 @@ function buildShell(){
   main.insertAdjacentHTML('beforeend', `
   <section class="screen" data-screen="0"><div class="hero">
     <div class="hero-in">
-      <div class="seal hero-seal emboss" role="img" aria-label="IIIT Naya Raipur"></div>
-      <div class="eyebrow">Operations &amp; Human Factors · IIIT Naya Raipur · Pages 164–184</div>
-      <h1>The Human Side of Security</h1>
+      <div class="hero-chip"><span class="seal seal-meta emboss" aria-hidden="true"></span>IIIT Naya Raipur<span class="dot"></span>Pages 164–184</div>
+      <div class="hero-kicker">Operations &amp; Human Factors</div>
+      <h1>The Human Side<br>of Security</h1>
       <p class="lead">Firewalls can't stop a person who has been fooled. 10 short lessons, then 8 live experiments.</p>
       <div class="hero-act"><button class="btn btn-dark" data-go="t1">Start ${ic('right')}</button><button class="link-btn" data-go="1">Skip to experiments</button></div>
+    </div>
+    <div class="hero-visual">
+      <div class="seal hero-seal emboss" role="img" aria-label="IIIT Naya Raipur seal"></div>
       <div class="hero-art">${TART.home}</div>
+      <div class="hero-cap"><span>Awareness is the best firewall.</span><span>8 live experiments</span></div>
     </div>
   </div></section>`);
 
@@ -903,6 +940,7 @@ $('#scrim').onclick = e => { if (e.target.id === 'scrim') closeWhy(); };
 function go(k){
   k = parseKey(k); if (idxOf(k) < 0) return;
   state.cur = k; closeWhy();
+  document.body.classList.toggle('at-intro', k === 0);
   $$('.screen').forEach(s => s.classList.toggle('active', parseKey(s.dataset.screen) === k));
   $$('.seg, .tdot').forEach(s => s.setAttribute('aria-current', parseKey(s.dataset.go) === k ? 'true' : 'false'));
   if (TH[k]) $(`.tdot[data-go="${k}"]`)?.classList.add('seen');
@@ -1105,7 +1143,7 @@ const TART = {
   </svg>`,
 };
 
-TART.home = `<svg viewBox="0 0 520 190" role="img" aria-label="Riya stays safe: a shield blocks the hacker's fake email">
+TART.home = `<svg viewBox="96 28 330 156" role="img" aria-label="Riya stays safe: a shield blocks the hacker's fake email">
     <line x1="40" y1="178" x2="480" y2="178" stroke="#DCDCD8" stroke-width="2" stroke-linecap="round"/>
     <ellipse cx="260" cy="176" rx="60" ry="5" fill="#E9E9E5"/>
     ${riya(150, 178, 1.1, 'happy')}
@@ -1775,7 +1813,9 @@ function fit(){
   const root = document.documentElement, sc = document.querySelector('.screen.active');
   let z = Z; root.style.setProperty('--z', z);
   for (let k = 0; sc && k < 4; k++) {
-    const need = sc.scrollHeight + 60 + 76 + 4;            // content + top bar + bottom bar
+    if (sc.scrollHeight <= sc.clientHeight + 2) break;      // already fits: never shrink
+    const chrome = document.body.classList.contains('at-intro') ? 60 : 60 + 76;
+    const need = sc.scrollHeight + chrome + 4;              // content + top bar + bottom bar
     const zFit = innerHeight / need;
     if (zFit >= z - 0.005) break;
     z = Math.max(MIN_Z, Math.min(Z, zFit));
