@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Human Factors Lab · 8 Live Experiments</title>
 <style>
 :root{
@@ -677,6 +677,15 @@ body.narrow .hero-kicker{margin-top:22px}
 .sp-src .src b{font-size:14px}
 body.narrow .sp-grid{grid-template-columns:1fr}
 
+/* minimal conclusion: thin rule, one easy line, book wording in grey */
+.concl{background:none;color:inherit;box-shadow:none;border-radius:0;padding:2px 0 2px 16px;border-left:2px solid var(--ink)}
+.concl-h{color:var(--muted);text-transform:none;letter-spacing:0;font-size:13px;font-weight:600;margin-bottom:4px}
+.concl-h .i{display:none}
+.concl .concl-easy{color:var(--ink);font-size:19px;font-weight:650;line-height:1.35}
+.concl-book{border-top:0;padding-top:0;margin-top:6px;font-size:13px;color:var(--muted)}
+.concl-book b{color:var(--ink-2)}
+.concl-book span:last-child{display:none}
+
 /* one column when the zoomed page is narrow */
 body.narrow .lesson-wrap,body.narrow .overview,body.narrow .phone-wrap{grid-template-columns:1fr}
 body.narrow .lesson-wrap{display:flex;flex-direction:column}
@@ -704,6 +713,67 @@ body.narrow .rules{grid-template-columns:1fr}
   .bottom .msg span{display:none}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ================= phones ================= */
+.m-only{display:none}
+body.mobile .m-only{display:inline}
+body.mobile .d-only{display:none}
+body.mobile .app{height:100vh;height:100dvh}
+body.mobile .bottom{padding-bottom:env(safe-area-inset-bottom)}
+body.mobile .top{padding-top:env(safe-area-inset-top)}
+body.mobile .top{grid-template-columns:auto 1fr auto;padding:0 12px;gap:8px}
+body.mobile .segs,body.mobile #fsBtn{display:none}
+body.mobile .top-right{gap:10px}
+body.mobile .bottom{padding:0 14px;gap:10px}
+body.mobile .bottom .btn{min-height:42px;padding:0 16px;font-size:15px}
+body.mobile .bottom .pos{font-size:13px}
+body.mobile .hero{padding:28px 20px 32px;gap:24px}
+body.mobile .hero h1{font-size:36px;white-space:normal}
+body.mobile .hero .lead{font-size:17px}
+body.mobile .hero-chip{font-size:12.5px}
+body.mobile .theory{padding:20px 18px 28px;gap:14px}
+body.mobile .th-text h1{font-size:32px}
+body.mobile .th-simple{font-size:20px}
+body.mobile .th-art svg{max-height:180px}
+body.mobile .learn>*{margin-left:18px;margin-right:18px}
+body.mobile .learn h1{font-size:28px}
+body.mobile .lesson-wrap>.work{padding:16px 14px 26px}
+body.mobile .story{grid-template-columns:1fr;gap:10px}
+body.mobile .story-art svg{max-height:120px;margin:0 auto}
+body.mobile .story-t{font-size:17px}
+body.mobile .sheet{border-radius:14px}
+body.mobile .pad{padding:14px 14px}
+body.mobile .mail-head,body.mobile .mail-body{padding-left:14px;padding-right:14px}
+body.mobile .mail-subj{font-size:17px}
+body.mobile .flow{grid-template-columns:1fr 1fr}
+body.mobile .flow .node:nth-child(3){border-left:0}
+body.mobile .flow .node:nth-child(n+3){border-top:1px solid var(--line)}
+body.mobile .sheet:has(> table){overflow-x:auto}
+body.mobile .log,body.mobile .cmp{min-width:560px}
+body.mobile .roles{grid-template-columns:1fr 1fr}
+body.mobile .role:nth-child(3){border-left:0}
+body.mobile .role:nth-child(n+3){border-top:1px solid var(--line)}
+body.mobile .phone{margin:0 auto}
+body.mobile .pw-field{flex-wrap:wrap;padding:10px}
+body.mobile .pw-field input{width:100%;font-size:19px}
+body.mobile .pw-field .btn{width:100%}
+body.mobile .pw-stats,body.mobile .metrics,body.mobile .mods{grid-template-columns:1fr}
+body.mobile .pw-stats .stat,body.mobile .metric,body.mobile .mod{border-left:0;border-top:1px solid var(--line)}
+body.mobile .pw-stats .stat:first-child,body.mobile .metric:first-child,body.mobile .mod:first-child{border-top:0}
+body.mobile .metric .val{font-size:30px}
+body.mobile .months span{font-size:10.5px}
+body.mobile .sp-src{grid-template-columns:1fr 1fr}
+body.mobile .stats{grid-template-columns:1fr}
+body.mobile .stats div{border-left:0;border-top:1px solid var(--line)}
+body.mobile .stats div:first-child{border-top:0}
+body.mobile .sum-head .meet-art{display:none}
+body.mobile .page{padding:22px 18px 30px}
+body.mobile .takeaway{font-size:19px}
+body.mobile .thanks-fallback{font-size:48px}
+body.mobile .thanks-sub{font-size:19px}
+body.mobile .modal{padding:18px}
+body.mobile .hero-in{padding:0 4px}
+body.mobile .scene{max-height:200px}
 </style>
 </head>
 <body>
@@ -1385,18 +1455,21 @@ SIMS[2] = (el, a) => {
         <div class="mail-status" data-url>Keep the mouse on the button to see the real link</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="sheet pad"><div class="prompt">Find the 4 tricks in this email</div><p class="hint">Click on each part that looks fishy. Keep the mouse on the button to see the real link.</p>
+        <div class="sheet pad"><div class="prompt">Find the 4 tricks in this email</div><p class="hint"><span class="d-only">Click on each part that looks fishy. Keep the mouse on the button to see the real link.</span><span class="m-only">Tap each part that looks fishy. Tap the button to see the real link.</span></p>
           <div class="dots" data-dots><span></span><span></span><span></span><span></span></div><div class="count" data-count>0<small> / 4</small></div></div>
         <ul class="finds" data-finds></ul>
       </div>
     </div>
     <div data-next></div>`;
   const url = $('[data-url]', el), cta = $('.mail-cta', el);
+  if (isMobile()) url.textContent = 'Tap the button to see the real link';
   cta.onmouseenter = cta.onfocus = () => { url.textContent = 'http://sbi-kyc-update.xyz/login'; url.classList.add('bad'); };
   cta.onmouseleave = cta.onblur = () => { url.textContent = 'Keep the mouse on the button to see the real link'; url.classList.remove('bad'); };
   $$('.hot', el).forEach(h => {
     const hit = () => {
-      const i = +h.dataset.f; if (found.has(i)) return;
+      const i = +h.dataset.f;
+      if (i === 3 && isMobile()) { url.textContent = 'http://sbi-kyc-update.xyz/login'; url.classList.add('bad'); }
+      if (found.has(i)) return;
       found.add(i); h.classList.add('found'); h.insertAdjacentHTML('beforeend', `<span class="pin">${found.size}</span>`);
       $('[data-finds]', el).insertAdjacentHTML('beforeend', `<li class="sheet"><span class="num">${found.size}</span><div><b>${flags[i].t}</b>${flags[i].d}</div></li>`);
       $('[data-count]', el).innerHTML = `${found.size}<small> / 4</small>`;
@@ -1899,13 +1972,14 @@ function playThanks(){
 /* ================= Projector zoom ================= */
 let Z = +localStorage.getItem('hfZoom2') || 1.35;
 // Z is the presenter's preferred zoom; fit() lowers it per screen so nothing needs scrolling.
+const isMobile = () => innerWidth < 760;
 const MIN_Z = 1.15;   // never below ~18px text; beyond that the screen scrolls
 let fitting = false;
 function fit(){
   if (fitting) return; fitting = true;
   const root = document.documentElement, sc = document.querySelector('.screen.active');
-  let z = Z; root.style.setProperty('--z', z);
-  for (let k = 0; sc && k < 4; k++) {
+  let z = isMobile() ? 1 : Z; root.style.setProperty('--z', z);
+  for (let k = 0; sc && !isMobile() && k < 4; k++) {
     if (sc.scrollHeight <= sc.clientHeight + 2) break;      // already fits: never shrink
     const chrome = document.body.classList.contains('at-intro') ? 60 : 60 + 76;
     const need = sc.scrollHeight + chrome + 4;              // content + top bar + bottom bar
@@ -1920,7 +1994,8 @@ function fit(){
 let fitRaf = 0;
 const queueFit = () => { cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(fit); };
 function applyZoom(){
-  document.body.classList.toggle('narrow', innerWidth / Z < 1000);
+  document.body.classList.toggle('mobile', isMobile());
+  document.body.classList.toggle('narrow', innerWidth / (isMobile() ? 1 : Z) < 1000);
   fit();
 }
 addEventListener('resize', applyZoom);
