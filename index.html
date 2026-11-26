@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operations & Human Factors in Cyber Security | B&W Illustrated Guide (Pages 164–184)</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-paper: #f7f7f7;
+      --bg-ink: #111111;
+      --ink: #111111;
+      --ink-muted: #52525b;
+      --border: #111111;
+      --border-light: #d4d4d8;
+      --shadow: 4px 4px 0px #111111;
+      --shadow-sm: 3px 3px 0px #111111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: radial-gradient(#e4e4e7 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--border);
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+    }
+
+    .nav-brand span.badge {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.15rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      letter-spacing: 0.6px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.35rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.15s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+
+    /* Container & Sections */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 2px solid var(--border);
+      background: var(--bg);
+    }
+
+    section.paper {
+      background: var(--bg-paper);
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.85rem;
+      box-shadow: 2px 2px 0px var(--ink);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.45rem);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    h2 {
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .section-subtitle {
+      color: var(--ink-muted);
+      font-size: 1.05rem;
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4.5rem 0 4rem;
+      background: var(--bg);
+      border-bottom: 2px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      border: 2px solid var(--ink);
+      text-decoration: none;
+      transition: transform 0.12s, box-shadow 0.12s, background 0.15s;
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: none !important;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background: #27272a;
+    }
+
+    .btn-outline {
+      background: var(--bg);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-paper);
+    }
+
+    /* Illustrated Box / Card */
+    .card {
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s;
+    }
+
+    .card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--ink);
+    }
+
+    .shield-box {
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .layer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      background: var(--bg-paper);
+      border: 1.5px solid var(--ink);
+      margin-bottom: 0.65rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+    }
+
+    .layer-row.weak {
+      border-style: dashed;
+      border-width: 2px;
+      background: var(--bg);
+    }
+
+    .layer-row.breached {
+      background: var(--ink);
+      color: var(--bg);
+      border-style: solid;
+    }
+
+    .status-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1.5px solid var(--ink);
+      text-transform: uppercase;
+    }
+
+    .pill-solid {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .pill-outline {
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .pill-dashed {
+      background: var(--bg);
+      color: var(--ink);
+      border-style: dashed;
+    }
+
+    /* Grids */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .illus-icon {
+      width: 56px;
+      height: 56px;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      background: var(--bg-paper);
+    }
+
+    /* Vector Tabs */
+    .vector-tabs {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+    }
+
+    .vector-tab {
+      background: var(--bg);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      padding: 0.55rem 1.05rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.15s;
+    }
+
+    .vector-tab:hover {
+      background: var(--bg-paper);
+    }
+
+    .vector-tab.active {
+      background: var(--ink);
+      color: var(--bg);
+      box-shadow: 3px 3px 0px #71717a;
+    }
+
+    .vector-stage {
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 850px) {
+      .vector-stage { grid-template-columns: 1fr; }
+    }
+
+    .info-block {
+      margin-bottom: 1.15rem;
+    }
+
+    .info-block h4 {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-muted);
+      margin-bottom: 0.3rem;
+      font-weight: 800;
+    }
+
+    .example-quote {
+      background: var(--bg-paper);
+      border-left: 4px solid var(--ink);
+      border-top: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0.85rem 1rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-top: 0.4rem;
+    }
+
+    .prevention-box {
+      background: var(--bg-paper);
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .prevention-box h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.4rem;
+    }
+
+    .prevention-box ul {
+      list-style: none;
+    }
+
+    .prevention-box li {
+      padding: 0.4rem 0;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+    }
+
+    /* Email Inspector */
+    .email-client {
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .email-toolbar {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.6rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .dots {
+      display: flex;
+      gap: 0.35rem;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid var(--bg);
+    }
+
+    .email-body {
+      padding: 1.25rem;
+    }
+
+    .hotspot {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      border: 2px dashed var(--ink);
+      background: var(--bg-paper);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+
+    .hotspot:hover, .hotspot.found {
+      background: var(--ink);
+      color: var(--bg);
+      border-style: solid;
+    }
+
+    .flag-feedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 6px;
+      background: var(--bg-paper);
+      border: 1.5px solid var(--ink);
+      min-height: 82px;
+    }
+
+    /* Password Tester */
+    .pw-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      border: 2px solid var(--ink);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 1rem;
+      font-family: monospace;
+      font-weight: 700;
+      outline: none;
+      margin: 0.75rem 0;
+    }
+
+    .meter-track {
+      height: 12px;
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0.65rem 0;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--ink);
+      transition: width 0.25s;
+    }
+
+    .preset-chips {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .preset-chip {
+      font-family: monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: 4px;
+      background: var(--bg-paper);
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .preset-chip:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* Phone Simulator */
+    .phone-frame {
+      max-width: 310px;
+      margin: 0 auto;
+      background: var(--bg);
+      border: 3px solid var(--ink);
+      border-radius: 24px;
+      padding: 0.85rem;
+      box-shadow: var(--shadow);
+    }
+
+    .phone-notch {
+      width: 80px;
+      height: 10px;
+      background: var(--ink);
+      border-radius: 999px;
+      margin: 0 auto 0.75rem;
+    }
+
+    .phone-screen {
+      background: var(--bg-paper);
+      border: 1.5px solid var(--ink);
+      border-radius: 14px;
+      padding: 0.9rem;
+      min-height: 255px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sms-bubble {
+      background: var(--bg);
+      padding: 0.8rem;
+      border-radius: 10px 10px 10px 2px;
+      font-size: 0.86rem;
+      margin: 0.65rem 0;
+      border: 1.5px solid var(--ink);
+    }
+
+    /* Door Sim */
+    .door-sim {
+      background: var(--bg-paper);
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    /* Experiments */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 850px) {
+      .exp-grid { grid-template-columns: 1fr; }
+    }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .exp-btn {
+      text-align: left;
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.86rem;
+      transition: all 0.15s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .exp-btn:hover {
+      background: var(--bg-paper);
+    }
+
+    .exp-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+      box-shadow: 3px 3px 0px #71717a;
+    }
+
+    .exp-detail {
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .exp-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (max-width: 600px) {
+      .exp-meta { grid-template-columns: 1fr; }
+    }
+
+    .exp-subcard {
+      background: var(--bg-paper);
+      border: 1.5px solid var(--ink);
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    /* Interactive Experiment Workbench */
+    .lab-box {
+      margin: 1.25rem 0;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      background: var(--bg-paper);
+      overflow: hidden;
+    }
+
+    .lab-header {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.55rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lab-body {
+      padding: 1.15rem;
+    }
+
+    .chat-msg {
+      background: var(--bg);
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+      margin-bottom: 0.65rem;
+      font-size: 0.88rem;
+    }
+
+    .chat-msg.reply {
+      background: var(--ink);
+      color: var(--bg);
+      margin-left: 1.5rem;
+    }
+
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      background: var(--bg);
+      border: 1.5px solid var(--ink);
+    }
+
+    .log-table th, .log-table td {
+      border: 1px solid var(--border-light);
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+    }
+
+    .log-table th {
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .terminal-box {
+      background: var(--ink);
+      color: var(--bg);
+      font-family: monospace;
+      font-size: 0.82rem;
+      padding: 0.9rem 1rem;
+      border-radius: 6px;
+      min-height: 110px;
+      line-height: 1.5;
+    }
+
+    .proc-check {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .bar-row {
+      margin-bottom: 0.75rem;
+    }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .bar-track {
+      height: 12px;
+      background: var(--bg);
+      border: 1.5px solid var(--ink);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--ink);
+      transition: width 0.5s ease;
+    }
+
+    /* Quiz */
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--bg);
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      padding: 0.7rem 0.95rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.15s;
+    }
+
+    .quiz-option:hover {
+      background: var(--bg-paper);
+    }
+
+    .quiz-option.correct {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .quiz-option.wrong {
+      background: var(--bg-paper);
+      border-style: dashed;
+      text-decoration: line-through;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 0.88rem;
+    }
+
+    code {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-light);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.88em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <circle cx="12" cy="10" r="2.2"/>
+        <path d="M8.5 16c.8-1.8 6.2-1.8 7 0"/>
+      </svg>
+      <span>CYBER HUMAN</span>
+      <span class="badge">PAGES 164–184</span>
+    </div>
+    <div class="nav-links">
+      <a href="#foundation">Foundation</a>
+      <a href="#vectors">Attack Vectors</a>
+      <a href="#interactive-labs">Interactive Labs</a>
+      <a href="#experiments">8 Experiments</a>
+      <a href="#quiz">Quick Quiz</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="section-tag">Cyber Security Self-Study • Pages 164–184</span>
+        <h1>Operations &amp; Human Factors</h1>
+        <p style="font-size: 1.08rem; color: var(--ink-muted); max-width: 560px;">
+          Even the strongest firewalls and encryption fail if humans make mistakes. Explore how attackers exploit human psychology—and test your defenses through black-and-white interactive simulations.
+        </p>
+        <div class="hero-cta">
+          <a href="#interactive-labs" class="btn btn-primary">▶ Try Interactive Labs</a>
+          <a href="#experiments" class="btn btn-outline">🧪 View 8 Experiments</a>
+        </div>
+      </div>
+
+      <!-- Illustrated Security Chain Box -->
+      <div class="shield-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.85rem;">
+          <strong style="font-size:0.95rem;">ILLUSTRATED SECURITY CHAIN</strong>
+          <button onclick="toggleAttackSim()" class="btn btn-outline" style="padding:0.35rem 0.75rem; font-size:0.78rem;" id="simToggleBtn">Simulate Human Click</button>
+        </div>
+
+        <!-- Custom B&W Line Illustration -->
+        <div style="text-align:center; margin-bottom:0.85rem; padding:0.5rem; background:var(--bg-paper); border:1.5px solid var(--ink); border-radius:6px;">
+          <svg id="heroSvg" width="100%" height="92" viewBox="0 0 360 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Attacker -->
+            <circle cx="42" cy="34" r="13" stroke="#111" stroke-width="2.2"/>
+            <path d="M22 72 C22 54, 62 54, 62 72" stroke="#111" stroke-width="2.2"/>
+            <text x="42" y="86" text-anchor="middle" font-size="9" font-weight="bold" fill="#111">ATTACKER</text>
+
+            <!-- Arrow 1 -->
+            <line x1="70" y1="45" x2="122" y2="45" stroke="#111" stroke-width="2" stroke-dasharray="4 3"/>
+            <polygon points="122,40 132,45 122,50" fill="#111"/>
+
+            <!-- Firewall Wall -->
+            <rect x="138" y="18" width="54" height="54" rx="4" fill="#fff" stroke="#111" stroke-width="2.2"/>
+            <line x1="138" y1="36" x2="192" y2="36" stroke="#111" stroke-width="1.5"/>
+            <line x1="138" y1="54" x2="192" y2="54" stroke="#111" stroke-width="1.5"/>
+            <line x1="165" y1="18" x2="165" y2="36" stroke="#111" stroke-width="1.5"/>
+            <line x1="152" y1="36" x2="152" y2="54" stroke="#111" stroke-width="1.5"/>
+            <line x1="178" y1="36" x2="178" y2="54" stroke="#111" stroke-width="1.5"/>
+            <text x="165" y="86" text-anchor="middle" font-size="9" font-weight="bold" fill="#111">FIREWALL</text>
+
+            <!-- Bypass Arc -->
+            <path id="bypassArc" d="M52 24 C110 -8, 225 -8, 282 24" stroke="#111" stroke-width="2" stroke-dasharray="5 4" opacity="0.35"/>
+            <text id="bypassLabel" x="165" y="12" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#111" opacity="0.55">BYPASSED VIA SOCIAL ENG.</text>
+
+            <!-- Human Operator -->
+            <circle cx="305" cy="34" r="13" stroke="#111" stroke-width="2.2" fill="#fff"/>
+            <path d="M285 72 C285 54, 325 54, 325 72" stroke="#111" stroke-width="2.2" fill="#fff"/>
+            <text x="305" y="86" text-anchor="middle" font-size="9" font-weight="bold" fill="#111">HUMAN</text>
+          </svg>
+        </div>
+
+        <div class="layer-row">
+          <span>01. Network Firewall</span>
+          <span class="status-pill pill-solid">SECURE</span>
+        </div>
+        <div class="layer-row">
+          <span>02. 256-bit Encryption</span>
+          <span class="status-pill pill-solid">SECURE</span>
+        </div>
+        <div class="layer-row weak" id="humanLayer">
+          <span>03. Human Operator</span>
+          <span class="status-pill pill-dashed" id="humanStatus">VULNERABLE</span>
+        </div>
+        <p id="simNote" style="font-size:0.82rem; color:var(--ink-muted); margin-top:0.5rem;">
+          Click <strong>Simulate Human Click</strong> to see why attackers target people instead of systems.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: FOUNDATION -->
+  <section id="foundation" class="paper">
+    <div class="container">
+      <span class="section-tag">Pages 164 – 165 • Core Concept</span>
+      <h2>Why Do Most Cyber Attacks Succeed?</h2>
+      <p class="section-subtitle">
+        Technical controls protect infrastructure, but <strong>Operations &amp; Human Factors</strong> focuses on human behavior. Most breaches happen due to three core drivers:
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="illus-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3>1. Human Error</h3>
+          <p style="color: var(--ink-muted); margin-top: 0.5rem; font-size: 0.94rem;">
+            Accidental mistakes under stress or distraction—such as sending sensitive files to the wrong email, using weak passwords like <code>123456</code>, or leaving screens unlocked.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="illus-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3>2. Social Manipulation</h3>
+          <p style="color: var(--ink-muted); margin-top: 0.5rem; font-size: 0.94rem;">
+            Attackers exploit emotions like <strong>fear, urgency, trust, and authority</strong> to trick victims into willingly handing over passwords, OTPs, or physical access.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="illus-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3>3. Lack of Awareness</h3>
+          <p style="color: var(--ink-muted); margin-top: 0.5rem; font-size: 0.94rem;">
+            Without proper security training, employees cannot spot fake sender domains, suspicious URLs, or voice/SMS scams before it is too late.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: ATTACK VECTORS EXPLORER -->
+  <section id="vectors">
+    <div class="container">
+      <span class="section-tag">Pages 165 – 170 • Threat Landscape</span>
+      <h2>Human-Centric Attack Vectors</h2>
+      <p class="section-subtitle">Click each attack vector below to inspect how it works, real-world examples, and how to prevent it.</p>
+
+      <div class="vector-tabs" id="vectorTabs">
+        <button class="vector-tab active" onclick="selectVector('social', this)">Social Engineering</button>
+        <button class="vector-tab" onclick="selectVector('phishing', this)">Phishing</button>
+        <button class="vector-tab" onclick="selectVector('spear', this)">Spear Phishing</button>
+        <button class="vector-tab" onclick="selectVector('vishing', this)">Vishing</button>
+        <button class="vector-tab" onclick="selectVector('smishing', this)">Smishing</button>
+        <button class="vector-tab" onclick="selectVector('tailgating', this)">Tailgating</button>
+        <button class="vector-tab" onclick="selectVector('insider', this)">Insider Threat</button>
+      </div>
+
+      <div class="vector-stage" id="vectorStage"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INTERACTIVE LABS -->
+  <section id="interactive-labs" class="paper">
+    <div class="container">
+      <span class="section-tag">Pages 168 – 173 • Live Illustrative Demos</span>
+      <h2>Interactive Security Playground</h2>
+      <p class="section-subtitle">Demonstrate these live simulations during your presentation so your audience can spot threats in real time.</p>
+
+      <div class="grid-2">
+        <!-- Demo 1: Spot the Phishing Email -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <h3>1. Spot the Phishing Email (p. 173)</h3>
+            <span class="status-pill pill-outline" id="phishScore">0 / 3 FOUND</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--ink-muted); margin-bottom:1rem;">
+            Click the <strong>3 dashed suspicious elements</strong> inside this fake bank email:
+          </p>
+
+          <div class="email-client">
+            <div class="email-toolbar">
+              <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+              <span>INBOX — SECURITY ALERT</span>
+            </div>
+            <div class="email-body">
+              <p style="font-size:0.86rem; margin-bottom:0.45rem;">
+                <strong>From:</strong> <span class="hotspot" onclick="inspectPhish(0, this)">bank-security@gmail.com</span>
+              </p>
+              <p style="font-size:0.86rem; margin-bottom:0.8rem;">
+                <strong>Subject:</strong> <span class="hotspot" onclick="inspectPhish(1, this)">URGENT: Account will close in 2 hours!</span>
+              </p>
+              <hr style="border:0; border-top:1.5px solid var(--border-light); margin:0.75rem 0;">
+              <p style="font-size:0.9rem;">
+                Dear Customer,<br><br>
+                Your bank account is blocked due to suspicious activity. Verify your identity immediately or your funds will be frozen.<br><br>
+                Link: <span class="hotspot" onclick="inspectPhish(2, this)">http://click-here.ru/bank-login</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="flag-feedback" id="phishFeedback">
+            <span style="color:var(--ink-muted); font-size:0.88rem;">Click any dashed box above to inspect why it is a phishing red flag.</span>
+          </div>
+        </div>
+
+        <!-- Demo 2: Live Password Hygiene Tester -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <h3>2. Password Hygiene Tester (p. 172–173)</h3>
+            <span class="status-pill pill-outline" id="pwBadge">READY</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--ink-muted);">
+            Test examples from the textbook or type your own password to check strength and crack resistance:
+          </p>
+
+          <input type="text" id="pwInput" class="pw-input" placeholder="Type a password (e.g. 12345 or S3cure@2026)..." oninput="evaluatePassword()" />
+
+          <div class="preset-chips">
+            <button class="preset-chip" onclick="setPw('12345')">12345</button>
+            <button class="preset-chip" onclick="setPw('123456')">123456</button>
+            <button class="preset-chip" onclick="setPw('Secure@123')">Secure@123</button>
+            <button class="preset-chip" onclick="setPw('P@ssW0rd!2026')">P@ssW0rd!2026</button>
+            <button class="preset-chip" onclick="setPw('S3cure@2026')">S3cure@2026</button>
+          </div>
+
+          <div class="meter-track">
+            <div class="meter-fill" id="pwMeter"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.86rem; margin-bottom:0.75rem;">
+            <span id="pwStatusText" style="font-weight:700;">Status: Waiting for input</span>
+            <span id="pwCrackTime" style="color:var(--ink-muted);">Crack time: —</span>
+          </div>
+
+          <div style="background:var(--bg-paper); border:1.5px solid var(--ink); border-radius:6px; padding:0.9rem; font-size:0.85rem;">
+            <div id="chkLen">☐ At least 10+ characters</div>
+            <div id="chkCase">☐ Uppercase &amp; Lowercase letters</div>
+            <div id="chkNum">☐ Contains Numbers (0–9)</div>
+            <div id="chkSym">☐ Contains Special Symbols (@, #, !, $)</div>
+            <div id="chkCommon">☐ Not a common leaked password</div>
+          </div>
+        </div>
+
+        <!-- Demo 3: Vishing & Smishing Mobile Simulator -->
+        <div class="card">
+          <h3>3. Vishing &amp; Smishing Simulator (p. 168–169)</h3>
+          <p style="font-size:0.88rem; color:var(--ink-muted); margin-bottom:1rem;">
+            Switch between SMS (Smishing) and Voice Call (Vishing) to test how a user should respond:
+          </p>
+
+          <div style="display:flex; gap:0.5rem; justify-content:center; margin-bottom:1rem;">
+            <button class="vector-tab active" id="tabSms" onclick="switchPhoneMode('sms')">Smishing (SMS)</button>
+            <button class="vector-tab" id="tabCall" onclick="switchPhoneMode('call')">Vishing (Call)</button>
+          </div>
+
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen" id="phoneScreen"></div>
+          </div>
+        </div>
+
+        <!-- Demo 4: Tailgating Physical Security Visualizer -->
+        <div class="card">
+          <h3>4. Tailgating vs. Access Control (p. 169)</h3>
+          <p style="font-size:0.88rem; color:var(--ink-muted); margin-bottom:1rem;">
+            Toggle between an unsecured office door and biometric/mantrap access control:
+          </p>
+
+          <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+            <button class="btn btn-primary" style="flex:1; justify-content:center; font-size:0.82rem;" onclick="setDoorMode('unsafe')" id="btnUnsafe">✕ No Control (Tailgating)</button>
+            <button class="btn btn-outline" style="flex:1; justify-content:center; font-size:0.82rem;" onclick="setDoorMode('safe')" id="btnSafe">✓ Biometric + Guard</button>
+          </div>
+
+          <div class="door-sim" id="doorSim"></div>
+
+          <div style="margin-top:1rem; padding:0.9rem; background:var(--bg-paper); border-radius:6px; border:1.5px solid var(--ink); font-size:0.88rem;">
+            <strong>Security Awareness (Page 171):</strong><br>
+            <span style="color:var(--ink-muted);">Educating employees on phishing, password safety, and physical badge rules reduces human error and builds a strong <strong>security culture</strong>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: 8 LAB EXPERIMENTS -->
+  <section id="experiments">
+    <div class="container">
+      <span class="section-tag">Pages 174 – 184 • Practical Curriculum</span>
+      <h2>8 Laboratory Experiments</h2>
+      <p class="section-subtitle">Select any experiment from your syllabus to view its Aim, Theory, Procedure, Result, and Conclusion.</p>
+
+      <div class="exp-grid">
+        <div class="exp-list" id="expList"></div>
+        <div class="exp-detail" id="expDetail"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: QUICK QUIZ -->
+  <section id="quiz" class="paper">
+    <div class="container">
+      <span class="section-tag">Interactive Knowledge Check</span>
+      <h2>Quick Presentation Quiz</h2>
+      <p class="section-subtitle">Use these 3 quick questions at the end of your presentation to engage the audience.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <p style="font-weight:700; margin-bottom:0.75rem;">Q1. Which attack uses personalized info (name &amp; role) to target a specific person?</p>
+          <button class="quiz-option" onclick="answerQuiz(this, false)">A) Mass Phishing</button>
+          <button class="quiz-option" onclick="answerQuiz(this, true)">B) Spear Phishing</button>
+          <button class="quiz-option" onclick="answerQuiz(this, false)">C) Tailgating</button>
+        </div>
+        <div class="card">
+          <p style="font-weight:700; margin-bottom:0.75rem;">Q2. A caller pretending to be a bank officer asks for your OTP. What is this?</p>
+          <button class="quiz-option" onclick="answerQuiz(this, true)">A) Vishing (Voice Phishing)</button>
+          <button class="quiz-option" onclick="answerQuiz(this, false)">B) Smishing (SMS Phishing)</button>
+          <button class="quiz-option" onclick="answerQuiz(this, false)">C) Password Hygiene</button>
+        </div>
+        <div class="card">
+          <p style="font-weight:700; margin-bottom:0.75rem;">Q3. Which policy limits employees to only the data needed for their job?</p>
+          <button class="quiz-option" onclick="answerQuiz(this, false)">A) Tailgating</button>
+          <button class="quiz-option" onclick="answerQuiz(this, false)">B) Password Reuse</button>
+          <button class="quiz-option" onclick="answerQuiz(this, true)">C) Least Privilege Policy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><strong>Operations &amp; Human Factors in Cyber Security</strong> • White &amp; Black Illustrated Edition (Pages 164–184)</p>
+      <p style="margin-top:0.35rem; font-size:0.8rem; opacity:0.75;">Works 100% offline in any modern browser.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Hero Attack Simulation Toggle
+    let simActive = false;
+    function toggleAttackSim() {
+      simActive = !simActive;
+      const layer = document.getElementById('humanLayer');
+      const status = document.getElementById('humanStatus');
+      const note = document.getElementById('simNote');
+      const btn = document.getElementById('simToggleBtn');
+      const arc = document.getElementById('bypassArc');
+      const lbl = document.getElementById('bypassLabel');
+
+      if (simActive) {
+        layer.classList.add('breached');
+        status.textContent = 'COMPROMISED ✕';
+        status.className = 'status-pill pill-outline';
+        arc.setAttribute('opacity', '1');
+        lbl.setAttribute('opacity', '1');
+        note.innerHTML = '<strong>Breach Occurred!</strong> The employee clicked a phishing link and entered their password. Firewall &amp; Encryption were bypassed.';
+        btn.textContent = 'Reset Simulation';
+      } else {
+        layer.classList.remove('breached');
+        status.textContent = 'VULNERABLE';
+        status.className = 'status-pill pill-dashed';
+        arc.setAttribute('opacity', '0.35');
+        lbl.setAttribute('opacity', '0.55');
+        note.innerHTML = 'Click <strong>Simulate Human Click</strong> to see why attackers target people instead of systems.';
+        btn.textContent = 'Simulate Human Click';
+      }
+    }
+
+    // 2. Attack Vectors Data
+    const vectorsData = {
+      social: {
+        title: 'Social Engineering (Pages 165–166)',
+        def: 'The technique of tricking people into giving sensitive information. The hacker "manipulates humans" instead of hacking systems.',
+        methods: 'Fake emails, fake phone calls, fake websites.',
+        example: 'Attacker pretending to be IT support and asking an employee for their password.',
+        prevention: ['Never share passwords with anyone', 'Verify the requester’s identity independently', 'Stay suspicious of urgent or unusual requests']
+      },
+      phishing: {
+        title: 'Phishing (Pages 166–167)',
+        def: 'A cyber attack where fake emails or messages are sent to steal login details, passwords, bank details, and OTPs.',
+        methods: 'Mass fake emails impersonating banks, payment apps, or service providers.',
+        example: 'Email: "Your bank account is blocked, click here to login"',
+        prevention: ['Check the exact sender email address', 'Do not click unknown or shortened links', 'Use anti-phishing tools & email filters']
+      },
+      spear: {
+        title: 'Spear Phishing (Page 167)',
+        def: 'A targeted, personalized phishing attack on a specific person or organization. Danger Level: HIGH (very convincing).',
+        methods: 'Researching the target (OSINT) and crafting emails with real names, departments, and roles.',
+        example: 'Email addressed to a company employee using their real name, manager’s name, and exact job role.',
+        prevention: ['Verify unusual internal requests via phone/chat', 'Inspect email headers and domain spelling', 'Conduct targeted awareness training']
+      },
+      vishing: {
+        title: 'Vishing — Voice Phishing (Page 168)',
+        def: 'Phishing done using phone calls. Attackers use fake phone calls and urgency to steal sensitive information.',
+        methods: 'Caller ID spoofing and impersonating bank officials, government agents, or tech support.',
+        example: 'Caller pretending to be a bank officer asking for your OTP to stop a fake transaction.',
+        prevention: ['Never share OTPs or PINs on phone calls', 'Hang up and verify using official bank numbers', 'Do not trust caller ID alone']
+      },
+      smishing: {
+        title: 'Smishing — SMS Phishing (Pages 168–169)',
+        def: 'Phishing conducted through SMS text messages containing malicious links to steal data.',
+        methods: 'Fake delivery alerts, prize notifications, or bank KYC warnings sent via SMS.',
+        example: '"Your package is delayed, click link to track"',
+        prevention: ['Do not click unknown links in SMS messages', 'Verify the SMS sender ID', 'Check parcel status directly on official courier apps']
+      },
+      tailgating: {
+        title: 'Tailgating (Page 169)',
+        def: 'A physical security attack where an unauthorized person follows an authorized person into a restricted area.',
+        methods: 'Exploiting politeness ("holding the door") to enter secure offices without scanning a badge.',
+        example: 'Someone entering an office behind an employee without an ID card.',
+        prevention: ['Mandatory ID cards for every entrant', 'Biometric access & single-person turnstiles', 'Trained security guards & visitor logs']
+      },
+      insider: {
+        title: 'Insider Threat (Page 170)',
+        def: 'A security risk caused by people inside the organization (employees or trusted users). Two types: Malicious Insider (intentional) & Negligent Insider (careless mistakes).',
+        methods: 'Misusing authorized access to steal data or accidentally leaking confidential files.',
+        example: 'An employee stealing company customer data or accidentally uploading secrets publicly.',
+        prevention: ['Strict Access Control', 'Continuous monitoring & audit logs', 'Least Privilege Policy (minimum required access)']
+      }
+    };
+
+    function renderVector(key) {
+      const d = vectorsData[key];
+      document.getElementById('vectorStage').innerHTML = `
+        <div>
+          <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:1rem;">${d.title}</h3>
+          <div class="info-block">
+            <h4>Definition</h4>
+            <p>${d.def}</p>
+          </div>
+          <div class="info-block">
+            <h4>How It Works / Methods</h4>
+            <p style="color:var(--ink-muted);">${d.methods}</p>
+          </div>
+          <div class="info-block">
+            <h4>Real-World Example</h4>
+            <div class="example-quote">${d.example}</div>
+          </div>
+        </div>
+        <div class="prevention-box">
+          <h4>PREVENTION &amp; COUNTERMEASURES</h4>
+          <ul>
+            ${d.prevention.map(p => `<li><strong>✓</strong><span>${p}</span></li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    function selectVector(key, btn) {
+      document.querySelectorAll('#vectorTabs .vector-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      renderVector(key);
+    }
+    renderVector('social');
+
+    // 3. Phishing Email Inspector
+    const phishFlags = [
+      { title: 'Red Flag #1: Fake Sender Domain', desc: '<code>bank-security@gmail.com</code> uses a free public Gmail address. Real banks always use their official domain.' },
+      { title: 'Red Flag #2: Artificial Urgency', desc: 'Phrases like <em>"Account will close in 2 hours!"</em> create panic so you click without thinking.' },
+      { title: 'Red Flag #3: Suspicious Link', desc: '<code>http://click-here.ru/bank-login</code> points to an untrusted <code>.ru</code> domain instead of your bank’s official HTTPS site.' }
+    ];
+    const foundSet = new Set();
+
+    function inspectPhish(idx, el) {
+      el.classList.add('found');
+      foundSet.add(idx);
+      const scoreEl = document.getElementById('phishScore');
+      scoreEl.textContent = `${foundSet.size} / 3 FOUND`;
+      if (foundSet.size === 3) {
+        scoreEl.className = 'status-pill pill-solid';
+      }
+      const f = phishFlags[idx];
+      document.getElementById('phishFeedback').innerHTML = `
+        <strong>${f.title}</strong>
+        <p style="font-size:0.88rem; color:var(--ink-muted); margin-top:0.3rem;">${f.desc}</p>
+      `;
+    }
+
+    // 4. Password Hygiene Evaluator
+    function setPw(val) {
+      document.getElementById('pwInput').value = val;
+      evaluatePassword();
+    }
+
+    function evaluatePassword() {
+      const pw = document.getElementById('pwInput').value;
+      const meter = document.getElementById('pwMeter');
+      const statusText = document.getElementById('pwStatusText');
+      const crackTime = document.getElementById('pwCrackTime');
+      const badge = document.getElementById('pwBadge');
+
+      const hasLen = pw.length >= 10;
+      const hasCase = /[a-z]/.test(pw) && /[A-Z]/.test(pw);
+      const hasNum = /[0-9]/.test(pw);
+      const hasSym = /[^A-Za-z0-9]/.test(pw);
+      const notCommon = !['12345', '123456', 'password', 'admin', 'qwerty'].includes(pw.toLowerCase()) && pw.length > 0;
+
+      document.getElementById('chkLen').textContent = (hasLen ? '☑' : '☐') + ' At least 10+ characters';
+      document.getElementById('chkCase').textContent = (hasCase ? '☑' : '☐') + ' Uppercase & Lowercase letters';
+      document.getElementById('chkNum').textContent = (hasNum ? '☑' : '☐') + ' Contains Numbers (0–9)';
+      document.getElementById('chkSym').textContent = (hasSym ? '☑' : '☐') + ' Contains Special Symbols (@, #, !, $)';
+      document.getElementById('chkCommon').textContent = (notCommon ? '☑' : '☐') + ' Not a common leaked password';
+
+      if (!pw) {
+        meter.style.width = '0%';
+        statusText.textContent = 'Status: Waiting for input';
+        crackTime.textContent = 'Crack time: —';
+        badge.textContent = 'READY';
+        badge.className = 'status-pill pill-outline';
+        return;
+      }
+
+      let score = [hasLen, hasCase, hasNum, hasSym, notCommon].filter(Boolean).length;
+      if (!notCommon || pw.length < 6) score = 1;
+
+      if (score <= 2) {
+        meter.style.width = '28%';
+        statusText.textContent = 'Status: WEAK ✕';
+        crackTime.textContent = 'Crack time: < 1 second';
+        badge.textContent = 'WEAK ✕';
+        badge.className = 'status-pill pill-dashed';
+      } else if (score <= 4) {
+        meter.style.width = '65%';
+        statusText.textContent = 'Status: MODERATE';
+        crackTime.textContent = 'Crack time: Few hours/days';
+        badge.textContent = 'MODERATE';
+        badge.className = 'status-pill pill-outline';
+      } else {
+        meter.style.width = '100%';
+        statusText.textContent = 'Status: STRONG ✓';
+        crackTime.textContent = 'Crack time: Centuries';
+        badge.textContent = 'STRONG ✓';
+        badge.className = 'status-pill pill-solid';
+      }
+    }
+
+    // 5. Phone Vishing / Smishing Simulator
+    function switchPhoneMode(mode) {
+      document.getElementById('tabSms').classList.toggle('active', mode === 'sms');
+      document.getElementById('tabCall').classList.toggle('active', mode === 'call');
+      const screen = document.getElementById('phoneScreen');
+
+      if (mode === 'sms') {
+        screen.innerHTML = `
+          <div>
+            <div style="font-size:0.74rem; font-weight:700; color:var(--ink-muted); text-align:center;">SMS • UNKNOWN SENDER</div>
+            <div class="sms-bubble">
+              <strong>Delivery Alert:</strong> Your package is delayed. Click link to track &amp; update address:<br>
+              <span style="text-decoration:underline; font-family:monospace;">http://track-pkg.xyz/pay</span>
+            </div>
+            <div id="phoneResult" style="font-size:0.8rem; margin-top:0.5rem;"></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.45rem;">
+            <button class="btn btn-outline" style="padding:0.45rem; font-size:0.8rem; justify-content:center;" onclick="phoneAction('trap', 'Smishing Trap! Clicking unknown SMS links can steal card details or install malware.')">Click Tracking Link</button>
+            <button class="btn btn-primary" style="padding:0.45rem; font-size:0.8rem; justify-content:center;" onclick="phoneAction('safe', 'Smart Defense! Always verify package status directly on the official courier app.')">Ignore &amp; Check Official App</button>
+          </div>
+        `;
+      } else {
+        screen.innerHTML = `
+          <div>
+            <div style="font-size:0.74rem; font-weight:700; color:var(--ink); text-align:center;">INCOMING CALL • +1-800-FAKE</div>
+            <div class="sms-bubble" style="border-style:dashed;">
+              <strong>"Bank Fraud Officer":</strong><br>
+              "Sir, ₹50,000 is being debited from your account! Tell me the 6-digit OTP right now to cancel it!"
+            </div>
+            <div id="phoneResult" style="font-size:0.8rem; margin-top:0.5rem;"></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.45rem;">
+            <button class="btn btn-outline" style="padding:0.45rem; font-size:0.8rem; justify-content:center;" onclick="phoneAction('trap', 'Vishing Trap! Real bank officers NEVER ask for your OTP over a phone call.')">Read Back OTP</button>
+            <button class="btn btn-primary" style="padding:0.45rem; font-size:0.8rem; justify-content:center;" onclick="phoneAction('safe', 'Safe Choice! Hang up immediately and call the official number on the back of your card.')">Hang Up &amp; Verify Official No.</button>
+          </div>
+        `;
+      }
+    }
+
+    function phoneAction(type, msg) {
+      const el = document.getElementById('phoneResult');
+      if (type === 'trap') {
+        el.innerHTML = `<div style="padding:0.55rem; border-radius:6px; background:var(--bg); border:1.5px dashed var(--ink); font-weight:600;">✕ ${msg}</div>`;
+      } else {
+        el.innerHTML = `<div style="padding:0.55rem; border-radius:6px; background:var(--ink); color:var(--bg); font-weight:600;">✓ ${msg}</div>`;
+      }
+    }
+    switchPhoneMode('sms');
+
+    // 6. Tailgating SVG Visualizer
+    function setDoorMode(mode) {
+      const sim = document.getElementById('doorSim');
+      const btnU = document.getElementById('btnUnsafe');
+      const btnS = document.getElementById('btnSafe');
+
+      if (mode === 'unsafe') {
+        btnU.className = 'btn btn-primary';
+        btnS.className = 'btn btn-outline';
+        sim.innerHTML = `
+          <svg width="100%" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Open Door -->
+            <rect x="135" y="12" width="46" height="72" stroke="#111" stroke-width="2" stroke-dasharray="4 3"/>
+            <path d="M135 12 L162 24 L162 84 L135 84 Z" fill="#fff" stroke="#111" stroke-width="2"/>
+            <!-- Employee -->
+            <circle cx="80" cy="34" r="10" stroke="#111" stroke-width="2" fill="#fff"/>
+            <path d="M64 74 C64 56, 96 56, 96 74" stroke="#111" stroke-width="2" fill="#fff"/>
+            <text x="80" y="88" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#111">EMPLOYEE</text>
+            <!-- Tailgater -->
+            <circle cx="220" cy="34" r="10" stroke="#111" stroke-width="2" stroke-dasharray="3 2" fill="#fff"/>
+            <path d="M204 74 C204 56, 236 56, 236 74" stroke="#111" stroke-width="2" stroke-dasharray="3 2" fill="#fff"/>
+            <line x1="200" y1="48" x2="170" y2="48" stroke="#111" stroke-width="2"/>
+            <polygon points="170,44 162,48 170,52" fill="#111"/>
+            <text x="220" y="88" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#111">TAILGATER</text>
+          </svg>
+          <span class="status-pill pill-dashed">TAILGATING BREACH ✕</span>
+          <p style="font-size:0.85rem; color:var(--ink-muted); margin-top:0.65rem;">
+            Employee scans badge &amp; holds the door open out of politeness. Unauthorized person slips inside without an ID card!
+          </p>
+        `;
+      } else {
+        btnS.className = 'btn btn-primary';
+        btnU.className = 'btn btn-outline';
+        sim.innerHTML = `
+          <svg width="100%" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Locked Mantrap -->
+            <rect x="135" y="12" width="46" height="72" fill="#111" stroke="#111" stroke-width="2"/>
+            <rect x="148" y="34" width="20" height="22" rx="3" fill="#fff"/>
+            <circle cx="158" cy="45" r="4" fill="#111"/>
+            <!-- Employee -->
+            <circle cx="80" cy="34" r="10" stroke="#111" stroke-width="2" fill="#fff"/>
+            <path d="M64 74 C64 56, 96 56, 96 74" stroke="#111" stroke-width="2" fill="#fff"/>
+            <text x="80" y="88" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#111">BADGE OK</text>
+            <!-- Blocked Tailgater -->
+            <circle cx="235" cy="34" r="10" stroke="#111" stroke-width="2" fill="#fff"/>
+            <path d="M219 74 C219 56, 251 56, 251 74" stroke="#111" stroke-width="2" fill="#fff"/>
+            <line x1="196" y1="30" x2="196" y2="66" stroke="#111" stroke-width="3"/>
+            <text x="235" y="88" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#111">BLOCKED</text>
+          </svg>
+          <span class="status-pill pill-solid">ENTRY BLOCKED ✓</span>
+          <p style="font-size:0.85rem; color:var(--ink-muted); margin-top:0.65rem;">
+            Biometric turnstile / Mantrap allows only one person per scan, and Security Guards verify every visitor’s ID card.
+          </p>
+        `;
+      }
+    }
+    setDoorMode('unsafe');
+
+    // 7. 8 Lab Experiments Data (Pages 174–184)
+    const experiments = [
+      {
+        id: 1, pages: 'pp. 174–175', title: 'Study of Social Engineering',
+        aim: 'To study social engineering attacks in cyber security.',
+        theory: 'Social engineering is a technique used by attackers to trick humans into revealing confidential information.',
+        proc: ['Study common human-based attacks.', 'Identify how attackers manipulate users.', 'List prevention methods.'],
+        result: 'Social engineering concept is understood.',
+        conclusion: 'Humans are the weakest link in security systems.'
+      },
+      {
+        id: 2, pages: 'pp. 175–176', title: 'Study of Phishing Attacks',
+        aim: 'To study phishing attacks.',
+        theory: 'Phishing is a cyber attack where fake emails or messages are used to steal sensitive data. Example: "Your bank account is blocked, click here to login".',
+        proc: ['Observe fake email structure.', 'Identify suspicious links.', 'Understand data theft process.'],
+        result: 'Phishing attack is understood.',
+        conclusion: 'Phishing is used to steal passwords and personal data.'
+      },
+      {
+        id: 3, pages: 'pp. 176–177', title: 'Study of Spear Phishing',
+        aim: 'To study spear phishing attack.',
+        theory: 'Spear phishing is a targeted phishing attack on specific individuals or organizations using personalized details.',
+        proc: ['Identify targeted email.', 'Check personalized content.', 'Analyze attack method.'],
+        result: 'Spear phishing concept is understood.',
+        conclusion: 'It is more dangerous than normal phishing.'
+      },
+      {
+        id: 4, pages: 'pp. 178–179', title: 'Study of Vishing & Smishing',
+        aim: 'To study voice and SMS phishing attacks.',
+        theory: 'Vishing = phone call phishing (fake bank call asking OTP). Smishing = SMS phishing (fake SMS with malicious link).',
+        proc: ['Study call-based frauds.', 'Study SMS-based frauds.', 'Identify warning signs.'],
+        result: 'Vishing and smishing are understood.',
+        conclusion: 'Both attacks target human trust.'
+      },
+      {
+        id: 5, pages: 'pp. 179–180', title: 'Study of Tailgating',
+        aim: 'To study tailgating attack.',
+        theory: 'Tailgating is a physical security attack where an unauthorized person enters a restricted area by following an authorized person.',
+        proc: ['Observe entry control system.', 'Identify unauthorized entry attempts.', 'Study prevention methods.'],
+        result: 'Tailgating concept is understood.',
+        conclusion: 'Physical security is important in organizations.'
+      },
+      {
+        id: 6, pages: 'pp. 180–181', title: 'Study of Insider Threat',
+        aim: 'To study insider threats.',
+        theory: 'Insider threat comes from employees or trusted users who misuse access. Types: Malicious insider & Negligent insider.',
+        proc: ['Study user roles.', 'Identify misuse scenarios.', 'Analyze risks.'],
+        result: 'Insider threat is understood.',
+        conclusion: 'Internal users can also be dangerous.'
+      },
+      {
+        id: 7, pages: 'pp. 182–183', title: 'Study of Security Awareness',
+        aim: 'To study security awareness programs.',
+        theory: 'Security awareness trains users to recognize and avoid cyber attacks (Topics: Phishing awareness, Password safety, Safe internet usage).',
+        proc: ['Study training materials.', 'Observe user behavior improvements.'],
+        result: 'Security awareness concept is understood.',
+        conclusion: 'Awareness reduces cyber attacks.'
+      },
+      {
+        id: 8, pages: 'pp. 183–184', title: 'Study of Password Hygiene',
+        aim: 'To study password hygiene practices.',
+        theory: 'Password hygiene means using strong, unique passwords and changing them regularly (✕ 123456 vs ✓ S3cure@2026).',
+        proc: ['Create sample passwords.', 'Check strength level.'],
+        result: 'Password hygiene is understood.',
+        conclusion: 'Strong passwords improve security.'
+      }
+    ];
+
+    function renderExperiments() {
+      const list = document.getElementById('expList');
+      list.innerHTML = experiments.map((e, i) => `
+        <button class="exp-btn ${i === 0 ? 'active' : ''}" onclick="selectExp(${i}, this)">
+          <span>Exp ${e.id}: ${e.title.replace('Study of ', '')}</span>
+          <span style="font-size:0.72rem; opacity:0.75;">${e.pages}</span>
+        </button>
+      `).join('');
+      showExp(0);
+    }
+
+    function selectExp(idx, btn) {
+      document.querySelectorAll('.exp-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      showExp(idx);
+    }
+
+    function getLabHtml(id) {
+      if (id === 1) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 1: LIVE PRETEXTING CHAT SIMULATOR</span><span id="lab1Badge">IN PROGRESS</span></div>
+            <div class="lab-body">
+              <div class="chat-msg">
+                <strong>Alex (Fake IT Support):</strong><br>
+                "Urgent Security Alert! Your workstation has a critical kernel error. Reply with your <strong>login password</strong> right now so I can patch it remotely."
+              </div>
+              <div id="lab1Reply"></div>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button class="btn btn-outline" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab1('trap')">Share Password ("P@ss123")</button>
+                <button class="btn btn-primary" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab1('safe')">Verify ID &amp; Call Official IT Desk</button>
+              </div>
+            </div>
+          </div>`;
+      }
+      if (id === 2) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 2: EMAIL HEADER &amp; URL FORENSICS</span><span id="lab2Badge">UNVERIFIED</span></div>
+            <div class="lab-body">
+              <div class="terminal-box" style="margin-bottom:0.75rem;">
+                From: "Bank Security" &lt;bank-security@gmail.com&gt;<br>
+                Reply-To: dropbox-collect@mail.ru<br>
+                SPF-Check: <span id="lab2Spf">HIDDEN (Click Inspect)</span><br>
+                Payload-URL: http://click-here.ru/login
+              </div>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-outline" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab2('inspect')">Inspect SPF / DKIM Headers</button>
+                <button class="btn btn-primary" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab2('block')">Flag as Phishing &amp; Quarantine</button>
+              </div>
+              <div id="lab2Out" style="font-size:0.84rem; margin-top:0.65rem;"></div>
+            </div>
+          </div>`;
+      }
+      if (id === 3) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 3: SPEAR PHISHING OSINT ANALYZER</span><span id="lab3Badge">HIGH RISK</span></div>
+            <div class="lab-body">
+              <div class="chat-msg">
+                <strong>To:</strong> Riya Sharma (Finance Lead)<br>
+                <strong>Subject:</strong> Q4 Vendor Audit — Approved by Director Verma<br>
+                "Hi <u>Riya</u>, as discussed in yesterday's <u>Finance</u> sync, please process the attached <u>Q4 Audit</u> invoice before 5 PM."
+              </div>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-outline" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab3('osint')">Reveal OSINT Data Sources</button>
+                <button class="btn btn-primary" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab3('verify')">Verify Out-of-Band with Director</button>
+              </div>
+              <div id="lab3Out" style="font-size:0.84rem; margin-top:0.65rem;"></div>
+            </div>
+          </div>`;
+      }
+      if (id === 4) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 4: VISHING CALL &amp; SMISHING URL EXPANDER</span><span id="lab4Badge">ACTIVE THREAT</span></div>
+            <div class="lab-body">
+              <div class="chat-msg">
+                <strong>📞 Call Transcript:</strong> "We detected fraud on your card! Tell me the 6-digit OTP <code>482910</code> immediately!"<br>
+                <strong>💬 SMS Link:</strong> <code>bit.ly/3xPk9-parcel</code>
+              </div>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-outline" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab4('expand')">Expand Shortened SMS URL</button>
+                <button class="btn btn-primary" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab4('defend')">Refuse OTP &amp; Report Number</button>
+              </div>
+              <div id="lab4Out" style="font-size:0.84rem; margin-top:0.65rem;"></div>
+            </div>
+          </div>`;
+      }
+      if (id === 5) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 5: PHYSICAL ACCESS &amp; TAILGATING CONSOLE</span><span id="lab5Badge">GATE OPEN</span></div>
+            <div class="lab-body">
+              <table class="log-table" style="margin-bottom:0.75rem;">
+                <thead><tr><th>Time</th><th>Person</th><th>Badge Status</th><th>Action</th></tr></thead>
+                <tbody id="lab5Log">
+                  <tr><td>09:12:04</td><td>EMP-104 (Authorized)</td><td>SCANNED ✓</td><td>ALLOWED</td></tr>
+                  <tr><td>09:12:07</td><td>Unknown (Holding Coffee)</td><td>NO BADGE ✕</td><td id="lab5Row">PENDING...</td></tr>
+                </tbody>
+              </table>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-outline" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab5('allow')">Hold Door Open (Polite)</button>
+                <button class="btn btn-primary" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab5('block')">Enforce Badge + Mantrap</button>
+              </div>
+            </div>
+          </div>`;
+      }
+      if (id === 6) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 6: INSIDER THREAT SIEM LOG ANALYZER</span><span id="lab6Badge">2 ALERTS</span></div>
+            <div class="lab-body">
+              <table class="log-table" style="margin-bottom:0.75rem;">
+                <thead><tr><th>User</th><th>Activity</th><th>Classification</th></tr></thead>
+                <tbody>
+                  <tr><td>alice.hr</td><td>Viewed 2 records (10:15 AM)</td><td>NORMAL</td></tr>
+                  <tr><td>bob.dev</td><td>Copied 4.8 GB DB to USB (02:18 AM)</td><td id="lab6Bob"><button class="preset-chip" onclick="runLab6('bob')">Classify</button></td></tr>
+                  <tr><td>carol.sales</td><td>Emailed payroll.xlsx to @gmail.com</td><td id="lab6Carol"><button class="preset-chip" onclick="runLab6('carol')">Classify</button></td></tr>
+                </tbody>
+              </table>
+              <button class="btn btn-primary" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab6('polp')">Apply Least Privilege Policy</button>
+              <div id="lab6Out" style="font-size:0.84rem; margin-top:0.65rem;"></div>
+            </div>
+          </div>`;
+      }
+      if (id === 7) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 7: SECURITY AWARENESS IMPACT SIMULATOR</span><span id="lab7Badge">BASELINE</span></div>
+            <div class="lab-body">
+              <div class="bar-row">
+                <div class="bar-label"><span>Phishing Click Rate (Lower is Better)</span><span id="lab7ClickVal">42%</span></div>
+                <div class="bar-track"><div class="bar-fill" id="lab7ClickBar" style="width:42%;"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label"><span>Threat Reporting Rate (Higher is Better)</span><span id="lab7RepVal">12%</span></div>
+                <div class="bar-track"><div class="bar-fill" id="lab7RepBar" style="width:12%;"></div></div>
+              </div>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.5rem;">
+                <button class="btn btn-primary" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab7(true)">Run 6-Month Awareness Training</button>
+                <button class="btn btn-outline" style="padding:0.45rem 0.85rem; font-size:0.82rem;" onclick="runLab7(false)">Reset Baseline</button>
+              </div>
+            </div>
+          </div>`;
+      }
+      if (id === 8) {
+        return `
+          <div class="lab-box">
+            <div class="lab-header"><span>LAB 8: LIVE BRUTE-FORCE &amp; DICTIONARY CRACKER</span><span id="lab8Badge">READY</span></div>
+            <div class="lab-body">
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.65rem;">
+                <button class="preset-chip" onclick="runLab8('123456')">Test: 123456</button>
+                <button class="preset-chip" onclick="runLab8('password')">Test: password</button>
+                <button class="preset-chip" onclick="runLab8('S3cure@2026')">Test: S3cure@2026</button>
+              </div>
+              <div class="terminal-box" id="lab8Term">Select a password above to run simulated dictionary &amp; brute-force attack...</div>
+            </div>
+          </div>`;
+      }
+      return '';
+    }
+
+    function showExp(idx) {
+      const e = experiments[idx];
+      document.getElementById('expDetail').innerHTML = `
+        <span class="section-tag" style="margin-bottom:0.5rem;">Experiment ${e.id} • ${e.pages}</span>
+        <h3 style="font-size:1.45rem; font-weight:800; margin-bottom:1rem;">${e.title}</h3>
+        <div class="info-block">
+          <h4>Aim</h4>
+          <p>${e.aim}</p>
+        </div>
+        <div class="info-block">
+          <h4>Theory</h4>
+          <p style="color:var(--ink-muted);">${e.theory}</p>
+        </div>
+        <div class="info-block">
+          <h4>Procedure (Interactive Checklist)</h4>
+          <div>
+            ${e.proc.map((step, sIdx) => `
+              <label class="proc-check">
+                <input type="checkbox" style="accent-color:#111; width:15px; height:15px;">
+                <span>${sIdx + 1}. ${step}</span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
+        ${getLabHtml(e.id)}
+        <div class="exp-meta">
+          <div class="exp-subcard">
+            <h4 style="font-size:0.78rem; text-transform:uppercase; font-weight:800;">Result</h4>
+            <p style="font-size:0.92rem; margin-top:0.3rem;">${e.result}</p>
+          </div>
+          <div class="exp-subcard" style="background:var(--ink); color:var(--bg);">
+            <h4 style="font-size:0.78rem; text-transform:uppercase; font-weight:800; opacity:0.8;">Conclusion</h4>
+            <p style="font-size:0.92rem; margin-top:0.3rem; font-weight:700;">${e.conclusion}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Interactive Lab Handlers (Experiments 1-8)
+    function runLab1(choice) {
+      const el = document.getElementById('lab1Reply');
+      const badge = document.getElementById('lab1Badge');
+      if (choice === 'trap') {
+        badge.textContent = 'COMPROMISED ✕';
+        el.innerHTML = `<div class="chat-msg reply"><strong>You:</strong> Sure, my password is P@ss123.</div><p style="font-size:0.84rem; font-weight:700;">✕ BREACH: Attacker logged in and stole confidential company files!</p>`;
+      } else {
+        badge.textContent = 'DEFENDED ✓';
+        el.innerHTML = `<div class="chat-msg reply"><strong>You:</strong> I cannot share passwords. Give me your ticket ID; I will call the official IT desk.</div><p style="font-size:0.84rem; font-weight:700;">✓ SUCCESS: Attacker disconnected immediately. Identity verification stopped the attack!</p>`;
+      }
+    }
+
+    function runLab2(act) {
+      if (act === 'inspect') {
+        document.getElementById('lab2Spf').textContent = 'FAIL (gmail.com is NOT authorized for Bank!) | DKIM: NONE';
+        document.getElementById('lab2Badge').textContent = 'SPOOF DETECTED';
+      } else {
+        document.getElementById('lab2Badge').textContent = 'QUARANTINED ✓';
+        document.getElementById('lab2Out').innerHTML = '<strong>✓ Phishing Email Quarantined:</strong> Spoofed sender &amp; malicious <code>.ru</code> link blocked before credential theft.';
+      }
+    }
+
+    function runLab3(act) {
+      if (act === 'osint') {
+        document.getElementById('lab3Out').innerHTML = '<strong>🔍 OSINT Recon Exposed:</strong> Attacker scraped <em>Riya Sharma</em> &amp; <em>Finance</em> from LinkedIn, and <em>Director Verma</em> from a public press release.';
+      } else {
+        document.getElementById('lab3Badge').textContent = 'VERIFIED SAFE ✓';
+        document.getElementById('lab3Out').innerHTML = '<strong>✓ Out-of-Band Check:</strong> Director Verma confirmed he never sent this invoice. Spear phishing attempt thwarted!';
+      }
+    }
+
+    function runLab4(act) {
+      if (act === 'expand') {
+        document.getElementById('lab4Out').innerHTML = '<strong>🔗 Redirect Trace:</strong> <code>bit.ly/3xPk9-parcel</code> ➔ <code>http://parcel-fee-collect.tk/steal-card</code> (Malicious!)';
+      } else {
+        document.getElementById('lab4Badge').textContent = 'BLOCKED ✓';
+        document.getElementById('lab4Out').innerHTML = '<strong>✓ OTP Protected:</strong> Hung up on fake bank caller, blocked number, and reported Smishing SMS.';
+      }
+    }
+
+    function runLab5(act) {
+      const row = document.getElementById('lab5Row');
+      const badge = document.getElementById('lab5Badge');
+      if (act === 'allow') {
+        row.innerHTML = '<strong>BREACH ✕</strong>';
+        badge.textContent = 'INTRUSION!';
+      } else {
+        row.innerHTML = '<strong>BLOCKED ✓</strong>';
+        badge.textContent = 'SECURED ✓';
+      }
+    }
+
+    function runLab6(act) {
+      if (act === 'bob') {
+        document.getElementById('lab6Bob').innerHTML = '<strong>MALICIOUS INSIDER ✕</strong>';
+      } else if (act === 'carol') {
+        document.getElementById('lab6Carol').innerHTML = '<strong>NEGLIGENT INSIDER ⚠️</strong>';
+      } else {
+        document.getElementById('lab6Badge').textContent = 'POLP ACTIVE ✓';
+        document.getElementById('lab6Out').innerHTML = '<strong>✓ Least Privilege Applied:</strong> USB write access revoked for <code>bob.dev</code>; DLP external email warning enabled for <code>carol.sales</code>.';
+      }
+    }
+
+    function runLab7(trained) {
+      const badge = document.getElementById('lab7Badge');
+      if (trained) {
+        document.getElementById('lab7ClickVal').textContent = '4% (Reduced!)';
+        document.getElementById('lab7ClickBar').style.width = '4%';
+        document.getElementById('lab7RepVal').textContent = '89% (Improved!)';
+        document.getElementById('lab7RepBar').style.width = '89%';
+        badge.textContent = 'TRAINED ✓';
+      } else {
+        document.getElementById('lab7ClickVal').textContent = '42%';
+        document.getElementById('lab7ClickBar').style.width = '42%';
+        document.getElementById('lab7RepVal').textContent = '12%';
+        document.getElementById('lab7RepBar').style.width = '12%';
+        badge.textContent = 'BASELINE';
+      }
+    }
+
+    function runLab8(pw) {
+      const term = document.getElementById('lab8Term');
+      const badge = document.getElementById('lab8Badge');
+      badge.textContent = 'RUNNING...';
+      term.innerHTML = `$ hydra-sim --wordlist rockyou.txt --target "${pw}"<br>Testing dictionary hashes...`;
+      setTimeout(() => {
+        if (pw === '123456' || pw === 'password') {
+          badge.textContent = 'CRACKED ✕';
+          term.innerHTML += `<br>[!] MATCH FOUND: "${pw}"<br>[!] Time Elapsed: 0.02 seconds | Entropy: ~19 bits<br>[!] Verdict: WEAK — Easily compromised.`;
+        } else {
+          badge.textContent = 'RESISTANT ✓';
+          term.innerHTML += `<br>[*] Exhausted 14,344,391 dictionary words... NO MATCH.<br>[*] Brute-force estimate: > 400 Years | Entropy: ~72 bits<br>[✓] Verdict: STRONG — Meets Password Hygiene standards.`;
+        }
+      }, 450);
+    }
+
+    renderExperiments();
+
+    // 8. Quiz Handler
+    function answerQuiz(btn, isCorrect) {
+      const siblings = btn.parentElement.querySelectorAll('.quiz-option');
+      siblings.forEach(s => {
+        s.classList.remove('correct', 'wrong');
+      });
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    }
+  </script>
+</body>
+</html>
