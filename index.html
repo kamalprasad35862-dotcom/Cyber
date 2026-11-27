@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Human Factors">
+<meta name="theme-color" content="#FFFFFF">
 <title>Human Factors Lab · 8 Live Experiments</title>
 <style>
 :root{
@@ -686,6 +691,9 @@ body.narrow .sp-grid{grid-template-columns:1fr}
 .concl-book b{color:var(--ink-2)}
 .concl-book span:last-child{display:none}
 
+.pw-feel{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:2px}
+.stat b sup{font-size:.6em}
+
 /* one column when the zoomed page is narrow */
 body.narrow .lesson-wrap,body.narrow .overview,body.narrow .phone-wrap{grid-template-columns:1fr}
 body.narrow .lesson-wrap{display:flex;flex-direction:column}
@@ -715,6 +723,30 @@ body.narrow .rules{grid-template-columns:1fr}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 /* ================= phones ================= */
+@media (max-width:359px){
+  body.mobile .bottom .msg b{display:none}
+  body.mobile .bottom .btn{padding:0 10px;font-size:13.5px}
+  body.mobile .hero h1{font-size:30px}
+  body.mobile .th-text h1{font-size:28px}
+  body.mobile .sp-src{grid-template-columns:minmax(0,1fr)}
+  body.mobile .phone{transform:scale(.9);transform-origin:top center;margin-bottom:-50px}
+}
+@media (max-height:500px){
+  body.mobile .app{grid-template-rows:48px 1fr 56px}
+  body.mobile .bottom .btn{min-height:36px}
+  body.mobile .story-art svg{max-height:80px}
+  body.mobile .th-art svg{max-height:120px}
+  body.mobile .hero-visual{display:none}
+}
+html.mobile,html.mobile body{touch-action:pan-x pan-y;overscroll-behavior:none;-webkit-text-size-adjust:100%;text-size-adjust:100%;height:100%}
+html.mobile body{position:fixed;top:0;right:0;bottom:0;left:0;overflow:hidden}
+body.mobile *{-webkit-tap-highlight-color:transparent}
+body.mobile .screen{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+body.mobile button,body.mobile .top,body.mobile .bottom,body.mobile .chip,body.mobile .seg3{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body.mobile .btn,body.mobile .choice-btn,body.mobile .chip,body.mobile .icon-btn{touch-action:manipulation}
+body.mobile .btn:active,body.mobile .choice-btn:active,body.mobile .icon-btn:active{transform:scale(.97);opacity:.85}
+body.mobile input{font-size:16px}
+body.mobile .top{position:relative;z-index:10;box-shadow:0 1px 0 var(--line)}
 .m-only{display:none}
 body.mobile .m-only{display:inline}
 body.mobile .d-only{display:none}
@@ -727,6 +759,15 @@ body.mobile .top-right{gap:10px}
 body.mobile .bottom{padding:0 14px;gap:10px}
 body.mobile .bottom .btn{min-height:42px;padding:0 16px;font-size:15px}
 body.mobile .bottom .pos{font-size:13px}
+body.mobile .app{grid-template-columns:minmax(0,1fr);width:100vw;max-width:100vw;overflow:hidden}
+body.mobile .bottom .msg{min-width:0}
+body.mobile .bottom .msg .ico{width:30px;height:30px}
+body.mobile .bottom .msg b{font-size:15px}
+body.mobile .bottom .bar-btns{gap:6px;flex:none}
+body.mobile .bottom.safe .btn,body.mobile .bottom.danger .btn{padding:0 12px;min-height:40px;font-size:14px}
+body.mobile .bottom.danger .btn[data-retry]{font-size:0;gap:0;width:40px;padding:0}
+body.mobile .bottom .msg .ico{display:grid}
+body.mobile .bottom [data-retry] .i{width:18px;height:18px}
 body.mobile .hero{padding:28px 20px 32px;gap:24px}
 body.mobile .hero h1{font-size:36px;white-space:normal}
 body.mobile .hero .lead{font-size:17px}
@@ -748,7 +789,7 @@ body.mobile .mail-subj{font-size:17px}
 body.mobile .flow{grid-template-columns:1fr 1fr}
 body.mobile .flow .node:nth-child(3){border-left:0}
 body.mobile .flow .node:nth-child(n+3){border-top:1px solid var(--line)}
-body.mobile .sheet:has(> table){overflow-x:auto}
+body.mobile .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
 body.mobile .log,body.mobile .cmp{min-width:560px}
 body.mobile .roles{grid-template-columns:1fr 1fr}
 body.mobile .role:nth-child(3){border-left:0}
@@ -762,7 +803,13 @@ body.mobile .pw-stats .stat,body.mobile .metric,body.mobile .mod{border-left:0;b
 body.mobile .pw-stats .stat:first-child,body.mobile .metric:first-child,body.mobile .mod:first-child{border-top:0}
 body.mobile .metric .val{font-size:30px}
 body.mobile .months span{font-size:10.5px}
-body.mobile .sp-src{grid-template-columns:1fr 1fr}
+body.mobile .sp-src{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+body.mobile .sp-grid{grid-template-columns:minmax(0,1fr)}
+body.mobile .sp-grid>*{min-width:0}
+body.mobile .sp-side .btn{white-space:normal;height:auto;min-height:42px;padding:10px 14px;text-align:left;justify-content:flex-start}
+body.mobile .mail-meta,body.mobile .mail-subj,body.mobile .mail-body{overflow-wrap:anywhere}
+body.mobile .inbox-row{flex-wrap:wrap;gap:6px 10px}
+body.mobile .inbox-row .sub{white-space:normal;flex-basis:100%}
 body.mobile .stats{grid-template-columns:1fr}
 body.mobile .stats div{border-left:0;border-top:1px solid var(--line)}
 body.mobile .stats div:first-child{border-top:0}
@@ -774,6 +821,11 @@ body.mobile .thanks-sub{font-size:19px}
 body.mobile .modal{padding:18px}
 body.mobile .hero-in{padding:0 4px}
 body.mobile .scene{max-height:200px}
+body.mobile .toolbar{flex-wrap:wrap;row-gap:8px}
+body.mobile .tabs{width:100%}
+body.mobile .tabs button{flex:1;justify-content:center;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.mobile .thanks-in{padding:24px 16px;width:100%;box-sizing:border-box}
+body.mobile .thanks-hand{width:100%;max-width:420px}
 </style>
 </head>
 <body>
@@ -1680,7 +1732,7 @@ SIMS[5] = (el, a) => {
     <div style="border-top:1px solid var(--line);padding:12px 18px;font-size:15px;min-height:48px;color:var(--ink-2)" data-cap>Pick A or B to play it.</div>
     </div>
     <div class="split">
-      <div class="sheet"><table class="log"><thead><tr><th>Time</th><th>Person</th><th>Badge</th><th>Result</th></tr></thead><tbody data-log><tr><td colspan="4" style="color:var(--faint)">No entries yet</td></tr></tbody></table></div>
+      <div class="sheet tbl"><table class="log"><thead><tr><th>Time</th><th>Person</th><th>Badge</th><th>Result</th></tr></thead><tbody data-log><tr><td colspan="4" style="color:var(--faint)">No entries yet</td></tr></tbody></table></div>
       <div class="sheet pad"><div class="prompt" style="margin-bottom:14px">Play a situation</div>${choiceBtns([{ c:'breach', t:'A: Riya holds the door open to be polite' }, { c:'defend', t:'B: One ID card lets only one person in' }])}</div>
     </div>`;
   const emp = $('[data-emp]', el), str = $('[data-str]', el), door = $('[data-door]', el), led = $('[data-led]', el),
@@ -1746,7 +1798,7 @@ SIMS[6] = (el, a) => {
       <div class="role"><b>Academic office</b>Student records</div><div class="role"><b>Accounts staff</b>Fees and stipends</div>
       <div class="role"><b>Teaching assistant</b>Course files</div><div class="role"><b>Lab intern</b>Read-only, supervised</div></div></div>
     <div data-a1><button class="btn btn-dark" data-start>${ic('play')}Show today\'s activity</button></div>
-    <div class="sheet"><table class="log siem"><thead><tr><th>Time</th><th>User</th><th>Activity</th><th style="width:250px">Classify</th></tr></thead><tbody data-tb><tr><td colspan="4" style="color:var(--faint)">Waiting for events</td></tr></tbody></table></div>
+    <div class="sheet tbl"><table class="log siem"><thead><tr><th>Time</th><th>User</th><th>Activity</th><th style="width:250px">Classify</th></tr></thead><tbody data-tb><tr><td colspan="4" style="color:var(--faint)">Waiting for events</td></tr></tbody></table></div>
     <div class="split">
       <div class="sheet pad"><div class="prompt">Mark the 4 yellow rows</div><p class="hint" data-hint>Malicious = did it on purpose. Negligent = careless mistake.</p><div class="count" style="margin-top:10px" data-count>0<small> / 4</small></div></div>
       <div class="sheet pad"><div class="label">Risk to the college</div><div style="display:flex;justify-content:space-between;margin-bottom:8px"><b data-rl style="color:var(--red)">High</b><span class="hint">chance of data leaking</span></div><div class="meter"><span data-risk style="width:82%;background:var(--red)"></span></div></div>
@@ -1846,30 +1898,42 @@ SIMS[7] = (el, a) => {
 
 /* ---- 8. Password hygiene ---- */
 SIMS[8] = (el, a) => {
+  // most common first: position in this list = how many guesses a hacker needs
   const COMMON = ['123456','password','12345678','qwerty','123456789','12345','111111','1234567','abc123','password1','admin','iloveyou','welcome','letmein','qwerty123','p@ssw0rd','pass@123','admin@123','india@123','india123','iiitnr@123','iiitnr123','sunshine','monkey','dragon','football'];
   const WORDS = ['123456','password','12345678','qwerty','abc123','iloveyou','admin','welcome','letmein','monkey','dragon','sunshine','football','india@123','iiitnr@123','p@ssw0rd','pass@123'];
+  const SPEED = 1e10;                     // guesses per second (one strong GPU rig, offline)
   const analyse = pw => {
     const L = pw.length, lo = /[a-z]/.test(pw), up = /[A-Z]/.test(pw), di = /\d/.test(pw), sy = /[^A-Za-z0-9]/.test(pw);
     const pool = (lo ? 26 : 0) + (up ? 26 : 0) + (di ? 10 : 0) + (sy ? 33 : 0);
     const bits = L && pool ? L * Math.log2(pool) : 0;
-    const common = COMMON.includes(pw.toLowerCase());
-    const pattern = !common && /^[a-z]+[@#!._]?\d{1,4}$/i.test(pw);
-    const weakRule = common || pattern;
-    const level = !L ? -1 : weakRule ? 0 : bits < 40 ? 1 : bits < 60 ? 2 : bits < 80 ? 3 : 4;
-    return { L, lo, up, di, sy, bits, common, pattern, weakRule, level };
+    const rank = COMMON.indexOf(pw.toLowerCase());
+    const common = rank >= 0;
+    // word/name + optional symbol + digits (or digits + word): the first rule hackers try
+    const pattern = !common && (/^[a-z]+[@#!._$*-]?\d{1,6}[@#!._$*-]?$/i.test(pw) || /^\d{1,6}[@#!._$*-]?[a-z]+$/i.test(pw));
+    let guesses;
+    if (common) guesses = rank + 1;
+    else if (pattern) guesses = 2e5 * 3 * (sy ? 10 : 1) * Math.pow(10, (pw.match(/\d/g) || []).length);
+    else guesses = Math.max(1, Math.pow(2, bits) / 2);
+    const secs = guesses / SPEED;
+    const level = !L ? -1 : secs < 1 ? 0 : secs < 3600 ? 1 : secs < 3.15e7 ? 2 : secs < 3.15e10 ? 3 : 4;
+    return { L, lo, up, di, sy, bits, common, rank, pattern, guesses, secs, level };
   };
   const human = s => {
-    if (s < 1) return 'instantly';
+    if (s < 0.001) return 'under a millisecond';
+    if (s < 1) return Math.round(s * 1000) + ' milliseconds';
     if (s > 3.15e19) return 'over a trillion years';
     const u = [['seconds',60],['minutes',60],['hours',24],['days',365],['years',1e3],['thousand years',1e3],['million years',1e3],['billion years',Infinity]];
     let v = s, i = 0; while (i < u.length - 1 && v >= u[i][1]) { v /= u[i][1]; i++; }
-    return (v < 10 ? v.toFixed(1) : Math.round(v).toLocaleString()) + ' ' + u[i][0];
+    return (v < 10 ? v.toFixed(1) : Math.round(v).toLocaleString('en-IN')) + ' ' + u[i][0];
   };
-  const crackSecs = r => r.weakRule ? 0.002 : Math.pow(2, r.bits) / 2 / 1e10;
+  const feel = s => s < 0.5 ? 'Faster than a blink' : s < 60 ? 'Less than a minute' : s < 3600 ? 'Before your chai gets cold'
+    : s < 86400 ? 'Within a day' : s < 3.15e7 ? 'Within a year' : s < 3.15e9 ? 'Years to decades' : 'Longer than a lifetime';
+  const count = n => n < 1e3 ? Math.round(n).toString() : n < 1e5 ? Math.round(n / 1e3) + ' thousand' : n < 1e7 ? +(n / 1e5).toFixed(1) + ' lakh'
+    : n < 1e11 ? Math.round(n / 1e7).toLocaleString('en-IN') + ' crore' : '10<sup>' + Math.round(Math.log10(n)) + '</sup>';
   const LV = [['Very weak','var(--red)'],['Weak','var(--red)'],['Fair','#E8A21C'],['Strong','var(--green)'],['Very strong','var(--green)']];
   el.innerHTML = `${toolbar('key', 'Password lab', 'Ready')}<p class="hint" style="margin-top:-6px">Type a password or pick one below. Then press the button to see how fast a hacker can guess it.</p>
     <div class="sheet pw-field"><input data-in type="text" placeholder="Type a sample password" autocomplete="off" spellcheck="false" aria-label="Sample password"><button class="btn btn-dark" data-crack disabled>${ic('play')}Try to crack it</button></div>
-    <div class="chips"><span class="hint">Try:</span>${['123456','password','iiitnr@123','Riya2002','S3cure@2026','blue-Tiger-river-42!'].map(p => `<button class="chip" data-p="${p}">${p}</button>`).join('')}</div>
+    <div class="chips"><span class="hint">Try:</span>${['123456','password','iiitnr@123','Riya2002','Riya@2002','S3cure@2026','blue-Tiger-river-42!'].map(p => `<button class="chip" data-p="${p}">${p}</button>`).join('')}</div>
     <div class="sheet pad">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px"><b data-lvl style="font-size:18px">Waiting for a password</b><span class="hint">Use only sample passwords, never your real one.</span></div>
       <div class="bars" data-bars><span></span><span></span><span></span><span></span></div>
@@ -1881,18 +1945,20 @@ SIMS[8] = (el, a) => {
     </div>
     <div class="sheet"><div class="pw-stats">
       <div class="stat"><small>Length</small><b data-len>0</b></div>
-      <div class="stat"><small>Strength (bits)</small><b data-bits>0 bits</b></div>
-      <div class="stat"><small>Time to crack</small><b data-time>–</b></div>
+      <div class="stat"><small>Guesses needed</small><b data-gs>–</b></div>
+      <div class="stat"><small>Time to crack</small><b data-time>–</b><span class="pw-feel" data-feel></span></div>
     </div></div>
-    <div class="term" data-term><span class="d"># Crack time assumes an offline attack at 10 billion guesses per second.</span></div>`;
+    <div class="term" data-term><span class="d"># A hacker's computer tries about 1,000 crore guesses every second.</span></div>`;
   const inp = $('[data-in]', el), crackBtn = $('[data-crack]', el);
+  const colour = r => r.level >= 3 ? 'var(--green)' : r.level === 2 ? '#B86E00' : 'var(--red)';
   const update = () => {
     const pw = inp.value, r = analyse(pw);
     crackBtn.disabled = !pw; if (pw) a.tick(0);
     $('[data-len]', el).textContent = r.L;
-    $('[data-bits]', el).textContent = Math.round(r.weakRule ? Math.min(r.bits, 16) : r.bits) + ' bits';
-    $('[data-time]', el).textContent = pw ? human(crackSecs(r)) : '–';
-    $('[data-time]', el).style.color = !pw ? '' : r.level >= 3 ? 'var(--green)' : r.level === 2 ? '#B86E00' : 'var(--red)';
+    $('[data-gs]', el).innerHTML = pw ? count(r.guesses) : '–';
+    $('[data-time]', el).textContent = pw ? human(r.secs) : '–';
+    $('[data-time]', el).style.color = pw ? colour(r) : '';
+    $('[data-feel]', el).textContent = pw ? feel(r.secs) : '';
     $$('[data-bars] span', el).forEach((s, i) => s.style.background = pw && i <= Math.max(0, r.level - 1) ? LV[r.level][1] : '');
     $('[data-lvl]', el).textContent = pw ? LV[r.level][0] + (r.common ? ' · already leaked online' : r.pattern ? ' · easy-to-guess pattern' : '') : 'Waiting for a password';
     $('[data-lvl]', el).style.color = pw ? LV[r.level][1] : '';
@@ -1902,38 +1968,38 @@ SIMS[8] = (el, a) => {
   inp.addEventListener('input', update);
   $$('[data-p]', el).forEach(c => c.onclick = () => { inp.value = c.dataset.p; update(); });
   crackBtn.onclick = async () => {
-    const pw = inp.value; if (!pw) return; const r = analyse(pw), safe = pw.replace(/[<>&"]/g, '');
+    const pw = inp.value; if (!pw) return; const r = analyse(pw), safe = pw.replace(/[<>&"]/g, ''), t = human(r.secs);
     const term = $('[data-term]', el);
     const p = h => { term.insertAdjacentHTML('beforeend', '<br>' + h); term.scrollTop = term.scrollHeight; };
     crackBtn.disabled = inp.disabled = true; setStatus(el, 'live', 'Cracking');
-    term.innerHTML = `<span class="p">$</span> crack-sim --wordlist leaked-passwords.txt --rules best64`;
-    await sleep(400); p('<span class="d">Loaded 14,344,391 leaked passwords and 64 mutation rules</span>');
+    term.innerHTML = `<span class="p">$</span> crack-sim --wordlist leaked-passwords.txt --rules common`;
+    await sleep(400); p('<span class="d">Step 1: trying passwords that already leaked online…</span>');
     let hit = false;
     for (const w of WORDS) {
       await sleep(80); if (!a.alive()) return;
       if (r.common && w === pw.toLowerCase()) { hit = true; p(`<span class="r">MATCH  ${w}</span>`); break; }
       p(`<span class="d">try    ${w}</span>`);
     }
-    if (r.common && !hit) p(`<span class="r">MATCH  ${safe}  (leaked list)</span>`);
-    if (r.pattern) { await sleep(300); p('<span class="y">Rule: word + symbol + digits</span>'); await sleep(400); p(`<span class="r">MATCH  ${safe}</span>`); }
-    await sleep(300);
-    if (r.weakRule) {
-      p('<span class="r">Cracked in 0.002 seconds</span>'); setStatus(el, 'danger', 'Cracked');
-      a.fb('danger', `"${safe}" got cracked in no time.`, 'It is already in the hacker\'s list, or it follows a pattern they try first. Adding @ or numbers doesn\'t help if it is easy to guess.');
+    if (r.common && !hit) p(`<span class="r">MATCH  ${safe}</span>`);
+    if (!r.common) {
+      await sleep(250); p('<span class="d">Step 2: trying name/word + @ + numbers…</span>');
+      await sleep(400);
+      if (r.pattern) p(`<span class="r">MATCH  ${safe}  after about ${count(r.guesses)} guesses</span>`);
+      else { p('<span class="g">No match</span>'); await sleep(250); p(`<span class="y">Step 3: brute force, about ${count(r.guesses)} guesses needed</span>`); }
+    }
+    await sleep(350);
+    if (r.level <= 2) {
+      p(`<span class="r">Cracked in ${t}</span>`); setStatus(el, 'danger', r.secs < 1 ? 'Cracked' : 'Crackable');
+      const title = r.common ? `"${safe}" is #${r.rank + 1} on the leaked list.` : `"${safe}" cracked in ${t}.`;
+      const text = r.common ? `Hackers try the most common passwords first. This one fell on guess number ${r.rank + 1}, ${feel(r.secs).toLowerCase()}.`
+        : r.pattern ? `Name or word + @ + year/number is the first pattern hackers try. Adding @ or 123 does not make it strong. ${feel(r.secs)}.`
+        : `Too short or too simple. ${feel(r.secs)}. Use 12+ characters, or 4 random words together.`;
+      a.fb('danger', title, text);
       a.decide('pw', 'breach');
     } else {
-      p('<span class="g">Wordlist and rules exhausted: no match</span>'); await sleep(300);
-      p(`<span class="y">Brute force needed: ${Math.round(r.bits)} bits of entropy</span>`); await sleep(400);
-      const t = human(crackSecs(r));
-      if (r.level >= 3) {
-        p(`<span class="g">Estimated time to crack: ${t}</span>`); setStatus(el, 'safe', 'Resistant');
-        a.fb('safe', `Cracking it would take ${t}.`, 'Long, random and different for every account. Keep it in a password manager and turn on 2-step login, so even a leaked password is not enough.');
-        a.decide('pw', 'defend');
-      } else {
-        p(`<span class="r">Estimated time to crack: ${t}</span>`); setStatus(el, 'danger', 'Crackable');
-        a.fb('danger', `Crackable in ${t}.`, 'Too short or too simple. Use 12+ characters, or 4 random words together.');
-        a.decide('pw', 'breach');
-      }
+      p(`<span class="g">Estimated time to crack: ${t}</span>`); setStatus(el, 'safe', 'Resistant');
+      a.fb('safe', `Cracking it would take ${t}.`, `${feel(r.secs)}. Long, random and different for every account. Keep it in a password manager and turn on 2-step login.`);
+      a.decide('pw', 'defend');
     }
     a.tick(1); crackBtn.disabled = inp.disabled = false;
   };
@@ -1972,7 +2038,7 @@ function playThanks(){
 /* ================= Projector zoom ================= */
 let Z = +localStorage.getItem('hfZoom2') || 1.35;
 // Z is the presenter's preferred zoom; fit() lowers it per screen so nothing needs scrolling.
-const isMobile = () => innerWidth < 760;
+const isMobile = () => innerWidth < 760 || (matchMedia('(pointer: coarse)').matches && Math.min(innerWidth, innerHeight) < 560);
 const MIN_Z = 1.15;   // never below ~18px text; beyond that the screen scrolls
 let fitting = false;
 function fit(){
@@ -1995,10 +2061,12 @@ let fitRaf = 0;
 const queueFit = () => { cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(fit); };
 function applyZoom(){
   document.body.classList.toggle('mobile', isMobile());
+  document.documentElement.classList.toggle('mobile', isMobile());
   document.body.classList.toggle('narrow', innerWidth / (isMobile() ? 1 : Z) < 1000);
   fit();
 }
 addEventListener('resize', applyZoom);
+['gesturestart', 'gesturechange'].forEach(t => document.addEventListener(t, e => { if (isMobile()) e.preventDefault(); }, { passive: false }));
 const ro = new ResizeObserver(queueFit);
 document.querySelectorAll('.screen > *').forEach(el => ro.observe(el));
 document.addEventListener('keydown', e => {
